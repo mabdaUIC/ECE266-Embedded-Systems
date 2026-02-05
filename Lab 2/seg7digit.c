@@ -23,7 +23,13 @@ static uint8_t seg7_coding_table[10] = {
         0b00000110,         // digit 1
         0b01011011,         // digit 2
         0b01001111,         // digit 3
-        // YOUR CODE
+        0b01100110,         // digit 4
+        0b01101101,         // digit 5
+        0b01111101,         // digit 6
+        0b00000111,         // digit 7
+        0b01111111,         // digit 8
+        0b01101111,         // digit 9
+
 };
 
 /*
@@ -42,7 +48,12 @@ void Seg7Update(Seg7Display *seg7)
     seg7_code[1] = seg7_coding_table[seg7->digit[1]] + colon_code;
     seg7_code[2] = seg7_coding_table[seg7->digit[2]] + colon_code;
     seg7_code[3] = seg7_coding_table[seg7->digit[3]] + colon_code;
+    seg7_code[4] = seg7_coding_table[seg7->digit[4]] + colon_code;
+    seg7_code[5] = seg7_coding_table[seg7->digit[5]] + colon_code;
+    seg7_code[6] = seg7_coding_table[seg7->digit[6]] + colon_code;
+    seg7_code[7] = seg7_coding_table[seg7->digit[7]] + colon_code;
+    seg7_code[8] = seg7_coding_table[seg7->digit[8]] + colon_code;
+    seg7_code[9] = seg7_coding_table[seg7->digit[9]] + colon_code;
 
-    // Update the 7-segment
     Seg7RawUpdate(seg7_code);
 }

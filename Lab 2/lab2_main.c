@@ -24,7 +24,7 @@
  *******************************************************************************/
 
 // The state of the 7-segment display. See seg7.h for the definition of Seg7Display.
-Seg7Display seg7 = { { 3, 2, 1, 0 }, false }; // initial state is "3210" with colon off
+Seg7Display seg7 = { { 0, 0, 0, 0 }, false }; // initial state is "3210" with colon off
 
 // Events for clock update and push button
 Event clock_update_event;
@@ -52,20 +52,44 @@ void ClockUpdate(Event *event)
 
     // YOUR CODE STARTS HERE
 
+    if (seg7.colon_on)
+    {
+        if (++seg7.digit[0] >=10)
+        {
+            seg7.digit[0] = 0;
+            if (++seg7.digit[1] >=6)
+            {
+                seg7.digit[1] = 0;
+                if (++seg7.digit[2] >=10)
+                {
+                    seg7.digit[1] = 0;
+                    if (++seg7.digit[3] >=6)
+                    {
+                    seg7.digit[3] = 0;
+                    }
+                }
+            }
+        }
+    }
+
+
+
 
     // Update the 7-segment
     Seg7Update(&seg7);
 
-    // Also print the clock on terminal in format of "mm:ss" or "mm ss"
+    /** Also print the clock on terminal in format of "mm:ss" or "mm ss"
     if (seg7.colon_on)
-        uprintf("\r%c%c:%c%c", '0' + seg7.digit[3], '0' + seg7.digit[2],
-                '0' + seg7.digit[1], '0' + seg7.digit[0]);
+        uprintf("\r%c%c:%c%c", '0' + seg7.digit[secondsSingleDigit], '0' + seg7.digit[secondsDoubleDigit],
+                '0' + seg7.digit[minutesSingleDigit], '0' + seg7.digit[minutesDoubleDigit]);
     else
-        uprintf("\r%c%c %c%c", '0' + seg7.digit[3], '0' + seg7.digit[2],
-                '0' + seg7.digit[1], '0' + seg7.digit[0]);
+        uprintf("\r%c%c %c%c", '0' + seg7.digit[secondsSingleDigit], '0' + seg7.digit[secondsDoubleDigit],
+                '0' + seg7.digit[minutesSingleDigit], '0' + seg7.digit[minutesDoubleDigit]);
 
-    // Schedule a callback event after 0.5 seconds
+    // Schedule a callback event after 0.5 seconds**/
     EventSchedule(event, event->time + 500);
+
+
 }
 
 /********************************************************************************
@@ -79,6 +103,30 @@ void CheckPushButton(Event *event)
 {
     // YOUR CODE STARTS HERE
     // See the starter code for Lab 1 for a template for this function
+
+    {
+        // Read the pushbutton state; see pbRead() in launchpad.h
+        int input = PushButtonRead();
+
+        switch (input)
+        {
+        case 1:
+            if (++seg7.digit[2]>=10){
+                seg7.digit[2]=0;
+                if(++seg7.digit[3]>=6){
+                    seg7.digit[3] = 0;
+                }
+            }
+            Seg7Update(&seg7);
+            break;
+
+        case 2:
+            seg7.digit[1] = 0;
+            seg7.digit[0] = 0;
+            Seg7Update(&seg7);
+            break;
+        }
+    }
 }
 
 /********************************************************************************
@@ -88,6 +136,9 @@ void CheckPushButton(Event *event)
 
 int main(void)
 {
+    //to test
+    //uprintf("%s\n\r", "Hello, world!");
+
     // Initialize the Tiva C LaunchPad
     LaunchPadInit();
     Seg7Init();

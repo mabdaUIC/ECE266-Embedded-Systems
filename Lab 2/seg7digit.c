@@ -48,12 +48,7 @@ void Seg7Update(Seg7Display *seg7)
     seg7_code[1] = seg7_coding_table[seg7->digit[1]] + colon_code;
     seg7_code[2] = seg7_coding_table[seg7->digit[2]] + colon_code;
     seg7_code[3] = seg7_coding_table[seg7->digit[3]] + colon_code;
-    seg7_code[4] = seg7_coding_table[seg7->digit[4]] + colon_code;
-    seg7_code[5] = seg7_coding_table[seg7->digit[5]] + colon_code;
-    seg7_code[6] = seg7_coding_table[seg7->digit[6]] + colon_code;
-    seg7_code[7] = seg7_coding_table[seg7->digit[7]] + colon_code;
-    seg7_code[8] = seg7_coding_table[seg7->digit[8]] + colon_code;
-    seg7_code[9] = seg7_coding_table[seg7->digit[9]] + colon_code;
+
 
     Seg7RawUpdate(seg7_code);
 }

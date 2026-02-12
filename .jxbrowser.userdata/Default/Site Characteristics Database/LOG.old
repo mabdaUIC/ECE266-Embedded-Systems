@@ -1,0 +1,5 @@
+2026/02/12-14:38:31.221 1d70 Log #3: 2 ops saved to Table #4 OK
+2026/02/12-14:38:31.223 1d70 Archiving C:\School\Spring2026\ECE266\LabGroupF3\.jxbrowser.userdata\Default\Site Characteristics Database/000003.log: OK
+2026/02/12-14:38:31.223 1d70 Table #4: 2 entries OK
+2026/02/12-14:38:31.225 1d70 Archiving C:\School\Spring2026\ECE266\LabGroupF3\.jxbrowser.userdata\Default\Site Characteristics Database/MANIFEST-000001: OK
+2026/02/12-14:38:31.322 1d70 **** Repaired leveldb C:\School\Spring2026\ECE266\LabGroupF3\.jxbrowser.userdata\Default\Site Characteristics Database; recovered 1 files; 197 bytes. Some data may have been lost. ****

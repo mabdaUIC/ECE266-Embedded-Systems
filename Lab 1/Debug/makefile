@@ -16,7 +16,7 @@ ORDERED_OBJS += \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
 -l"C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/ccs/Debug/driverlib.lib" \
--l"C:/Users/conav/Documents/UIC/Classes Spring 2026/ECE 266/Util/Util/Debug/Util.lib" \
+-l"C:/Users/conav/Documents/UIC/Classes Spring 2026/ECE 266/LabGroupF3/Util/Debug/Util.lib" \
 
 -include ../makefile.init
 
@@ -123,21 +123,21 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-ECE\ 266\ Lab\ 1.out 
+Lab\ 1.out 
 
 EXE_OUTPUTS__QUOTED += \
-"ECE 266 Lab 1.out" 
+"Lab 1.out" 
 
 
 # All Target
 all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
-	@$(MAKE) --no-print-directory -Onone "ECE 266 Lab 1.out"
+	@$(MAKE) --no-print-directory -Onone "Lab 1.out"
 
 # Tool invocations
-ECE\ 266\ Lab\ 1.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
+Lab\ 1.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: Arm Linker'
-	"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"ECE 266 Lab 1.map" --heap_size=2048 --stack_size=2048 -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/lib" -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="ECE 266 Lab 1_linkInfo.xml" --rom_model -o "ECE 266 Lab 1.out" $(ORDERED_OBJS)
+	"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"Lab 1.map" --heap_size=0 --stack_size=512 -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/lib" -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="Lab 1_linkInfo.xml" --rom_model -o "Lab 1.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 

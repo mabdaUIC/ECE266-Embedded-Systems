@@ -14,7 +14,7 @@ lab1_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/sy
 lab1_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdbool.h
 lab1_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdio.h
 lab1_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdarg.h
-lab1_main.obj: C:/Users/conav/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/Util/Util/launchpad.h
+lab1_main.obj: C:/Users/conav/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/launchpad.h
 lab1_main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_types.h
 lab1_main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_memmap.h
 lab1_main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_ints.h
@@ -30,7 +30,7 @@ lab1_main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/uart.h
 lab1_main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/adc.h
 lab1_main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/timer.h
 lab1_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/assert.h
-lab1_main.obj: C:/Users/conav/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/Util/Util/event.h
+lab1_main.obj: C:/Users/conav/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h
 
 ../lab1_main.c:
 
@@ -60,7 +60,7 @@ C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdio.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdarg.h:
 
-C:/Users/conav/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/Util/Util/launchpad.h:
+C:/Users/conav/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/launchpad.h:
 
 C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_types.h:
 
@@ -92,5 +92,5 @@ C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/timer.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/assert.h:
 
-C:/Users/conav/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/Util/Util/event.h:
+C:/Users/conav/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h:
 

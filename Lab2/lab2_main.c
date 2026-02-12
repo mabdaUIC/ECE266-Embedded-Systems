@@ -62,7 +62,7 @@ void ClockUpdate(Event *event)
                 seg7.digit[1] = 0;
                 if (++seg7.digit[2] >=10)
                 {
-                    seg7.digit[1] = 0;
+                    seg7.digit[2] = 0;
                     if (++seg7.digit[3] >=6)
                     {
                     seg7.digit[3] = 0;

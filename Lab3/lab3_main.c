@@ -18,7 +18,7 @@
 #include <driverlib/i2c.h>
 #include "seg7.h"
 #include "launchpad.h"
-#inlcude "clockupdate.h"
+#include "clockupdate.h"
 
 /********************************************************************************
  * Global declarations
@@ -43,55 +43,6 @@ Event push_button_event;
  *
  *******************************************************************************/
 
-void ClockUpdate(Event *event)
-{
-    // Update the colon_on state, from true to false, or false to true
-    if (seg7.colon_on)
-        seg7.colon_on = false;
-    else
-        seg7.colon_on = true;
-
-    // YOUR CODE STARTS HERE
-
-    if (seg7.colon_on)
-    {
-        if (++seg7.digit[0] >=10)
-        {
-            seg7.digit[0] = 0;
-            if (++seg7.digit[1] >=6)
-            {
-                seg7.digit[1] = 0;
-                if (++seg7.digit[2] >=10)
-                {
-                    seg7.digit[1] = 0;
-                    if (++seg7.digit[3] >=6)
-                    {
-                    seg7.digit[3] = 0;
-                    }
-                }
-            }
-        }
-    }
-
-
-
-
-    // Update the 7-segment
-    Seg7Update(&seg7);
-
-    /** Also print the clock on terminal in format of "mm:ss" or "mm ss"
-    if (seg7.colon_on)
-        uprintf("\r%c%c:%c%c", '0' + seg7.digit[secondsSingleDigit], '0' + seg7.digit[secondsDoubleDigit],
-                '0' + seg7.digit[minutesSingleDigit], '0' + seg7.digit[minutesDoubleDigit]);
-    else
-        uprintf("\r%c%c %c%c", '0' + seg7.digit[secondsSingleDigit], '0' + seg7.digit[secondsDoubleDigit],
-                '0' + seg7.digit[minutesSingleDigit], '0' + seg7.digit[minutesDoubleDigit]);
-
-    // Schedule a callback event after 0.5 seconds**/
-    EventSchedule(event, event->time + 500);
-
-
-}
 
 /********************************************************************************
  * Task 2: Check push button events. If SW1 is pushed, advance minutes by 1.

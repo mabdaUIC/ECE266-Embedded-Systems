@@ -155,7 +155,7 @@ int main(void)
     LaunchPadInit();
     BuzzerInit();
 
-    uprintf("%s\n\r", "Lab 4: Motion Detection Alarm");
+    uprintf("%s\n\r", "Lab 4: Motion ");
 
     // Initialize the event objects
     EventInit(&buzzer_play_event, BuzzerPlay);

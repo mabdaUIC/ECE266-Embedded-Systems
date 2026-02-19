@@ -1,3 +1,2 @@
-2026/02/12-14:53:30.766 24f4 Reusing MANIFEST C:\School\Spring2026\ECE266\LabGroupF3\.jxbrowser.userdata\Default\Local Storage\leveldb/MANIFEST-000001
-2026/02/12-14:53:30.769 24f4 Recovering log #3
-2026/02/12-14:53:30.770 24f4 Reusing old log C:\School\Spring2026\ECE266\LabGroupF3\.jxbrowser.userdata\Default\Local Storage\leveldb/000003.log 
+2026/02/19-11:55:23.349 a4b0 Creating DB C:\Users\conav\Documents\UIC\Classes Spring 2026\ECE 266\LabGroupF3\.jxbrowser.userdata\Default\Local Storage\leveldb since it was missing.
+2026/02/19-11:55:23.369 a4b0 Reusing MANIFEST C:\Users\conav\Documents\UIC\Classes Spring 2026\ECE 266\LabGroupF3\.jxbrowser.userdata\Default\Local Storage\leveldb/MANIFEST-000001

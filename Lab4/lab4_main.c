@@ -5,6 +5,7 @@
  * lab4_main.c: Implement the tasks for a motion detection alarm.
  *
  * Created by Zhao Zhang
+ * Revised by Group F3
  *
  */
 
@@ -13,6 +14,7 @@
 #include <assert.h>
 #include "launchpad.h"
 #include "buzzer.h"
+#include "motion.h"    // New header for motion sensor
 
 /********************************************************************************
  * Global declarations
@@ -40,9 +42,14 @@ static SysState sys =
     false /* buzzer not turned on */
 };
 
+
+// Optional: for 3-second hold feature
+static uint32_t LastMotionTime = 0; // time when motion was last seen
+
 // The events
 Event buzzer_play_event;
 Event check_push_button_event;
+Event check_motion_event;           // New event for motion polling
 
 /********************************************************************************
  * Task 1: If the system is activated and alerted, make the buzzer play
@@ -72,7 +79,7 @@ void BuzzerPlay(Event *event)                   // the scheduled time
             // The buzzer is off: turn it on
             BuzzerOn();
             sys.buzzer_on = true;
-            delay = 12;                         // on for 12 ms
+            delay = 15;                         // on for 12 ms
         }
     }
     else
@@ -99,6 +106,49 @@ void BuzzerPlay(Event *event)                   // the scheduled time
  * to make it interrupt based.
  *******************************************************************************/
 
+void CheckMotion(Event *event)
+{
+    // Read motion sensor (assembly function returns non-zero if motion detected
+    int32_t motion = MotionRead();
+
+    // Optional: For 3-second hold, record the time when motion is seen
+    // Requires a global variable and using event->time (current time)
+    if (motion)
+    {
+        LastMotionTime = event->time;       // update last motion time
+    }
+
+    if (sys.activated)
+    {
+        // Decide alert state
+        //Basic version: alert = motion detected now
+        // Optional 3-second hold: alert = (event->time - lastMotionTime) < 3000 ms
+        uint32_t timeSinceMotion = event->time - LastMotionTime;
+        sys.alerted = (timeSinceMotion < 3000); // hold for 3 seconds
+        // (Optional) Print status for debugging
+        // uprintf("Motion: %d, alerted: %d\n\r", motion, sys.alerted);
+    }
+    else
+    {
+        sys.alerted = false;
+    }
+
+    // Update LED color based on alert state (and activation)
+    if (sys.activated)
+    {
+        if (sys.alerted)
+            LedTurnOnOff(true, false, false); // red
+        else
+            LedTurnOnOff(false, false, true); // green
+    }
+    else
+    {
+        LedTurnOnOff(false, false, false); // off
+    }
+
+    // Schedule next check (e.g., every 200 ms)
+    EventSchedule(event, event->time + 200);
+}
 
 /********************************************************************************
  * Task 3: Check push buttons.
@@ -126,8 +176,11 @@ void CheckPushButton(Event *event)
         {
             // Activate the system
             sys.activated = true;
-            sys.alerted = true;
-            LedTurnOnOff(true /* red */, false /* blue */, false /* green */);
+
+            // Not Needed since sys.alerted will be set by CheckMotion
+            // sys.alerted = true;
+            // LedTurnOnOff(true /* red */, false /* blue */, false /* green */);
+
         }
         break;
 
@@ -154,18 +207,21 @@ int main(void)
     // Initialize the Tiva C LaunchPad and 7-seg
     LaunchPadInit();
     BuzzerInit();
+    MotionInit();       // Initialized motion sensor
 
     uprintf("%s\n\r", "Lab 4: Motion Detection Alarm");
 
     // Initialize the event objects
     EventInit(&buzzer_play_event, BuzzerPlay);
     EventInit(&check_push_button_event, CheckPushButton);
+    EventInit(&check_motion_event, CheckMotion); // New event
 
     // Register ISR event
     PushButtonEventRegister(&check_push_button_event);
 
-    // Schedule time events
+    // Schedule initial call backs
     EventSchedule(&buzzer_play_event, 100);
+    EventSchedule(&check_motion_event, 200);    // Start polling motion
 
     // Run the callback scheduler
     while (true)

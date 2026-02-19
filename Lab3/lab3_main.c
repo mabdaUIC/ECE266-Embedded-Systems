@@ -101,7 +101,7 @@ int main(void)
 
     // Print out a message. See uprintf() in launchpad.h
     uprintf("\n\r");
-    uprintf("%s\n\r", "Lab 2: Wall clock");
+    uprintf("%s\n\r", "Lab 3: Wall clock");
 
     // Schedule the first event for clock update at 100ms
     EventSchedule(&clock_update_event, 100);

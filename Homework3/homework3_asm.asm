@@ -25,8 +25,8 @@ Sub2        .asmfunc
 ;****************************************************************
             .global Sub3
 Sub3        .asmfunc
-			SUB   r0, r0, r1 //a = a-b
-			SUB	  r0, r0, r2 //a = a-c
+			SUB   r0, r0, r1  //a = a-b
+			SUB	  r0, r0, r2  //a = a-c
 			BX	  lr
             .endasmfunc
 
@@ -36,9 +36,9 @@ Sub3        .asmfunc
 ;****************************************************************
             .global Calc
 Calc        .asmfunc
-			MOV	  r3, r1 //assign r3 with the value of x
-			MLA   r0, r0, r1, r2 //x = (x*y)+z
-			SUB   r0, r0, r3 //newValue = newValue-x
+			MOV	  r3, r1 ;//assign r3 with the value of x
+			MLA   r0, r0, r1, r2 ;//x = (x*y)+z
+			SUB   r0, r0, r3 ;//newValue = newValue-x
 			BX    lr
 
             .endasmfunc

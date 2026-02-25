@@ -209,7 +209,7 @@ int main(void)
     BuzzerInit();
     MotionInit();       // Initialized motion sensor
 
-    uprintf("%s\n\r", "Lab 4: Motion Detection Alarm");
+    uprintf("%s\n\r", "Lab 4: Motion ");
 
     // Initialize the event objects
     EventInit(&buzzer_play_event, BuzzerPlay);

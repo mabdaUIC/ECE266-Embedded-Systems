@@ -14,6 +14,6 @@
 	<createSlaveProjects value=""/>
 	<templateProperties value="id=com.ti.common.project.core.emptyProjectTemplate"/>
 	<filesToOpen value=""/>
-	<isTargetManual value="false"/>
+	<isTargetManual value="true"/>
 	<sourceLookupPath value=""/>
 </projectOptions>

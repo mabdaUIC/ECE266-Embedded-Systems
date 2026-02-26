@@ -1,6 +1,7 @@
-2026/02/19-11:55:23.306 b60 Log #6: 2 ops saved to Table #7 OK
-2026/02/19-11:55:23.307 b60 Archiving C:\Users\conav\Documents\UIC\Classes Spring 2026\ECE 266\LabGroupF3\.jxbrowser.userdata\Default\Site Characteristics Database/000006.log: OK
-2026/02/19-11:55:23.315 b60 Table #4: 2 entries OK
-2026/02/19-11:55:23.315 b60 Table #7: 2 entries OK
-2026/02/19-11:55:23.331 b60 Archiving C:\Users\conav\Documents\UIC\Classes Spring 2026\ECE 266\LabGroupF3\.jxbrowser.userdata\Default\Site Characteristics Database/MANIFEST-000001: OK
-2026/02/19-11:55:23.352 b60 **** Repaired leveldb C:\Users\conav\Documents\UIC\Classes Spring 2026\ECE 266\LabGroupF3\.jxbrowser.userdata\Default\Site Characteristics Database; recovered 2 files; 399 bytes. Some data may have been lost. ****
+2026/02/26-09:44:33.711 14aa0 Log #9: 1 ops saved to Table #10 OK
+2026/02/26-09:44:33.712 14aa0 Archiving C:\Users\conav\Documents\UIC\Classes Spring 2026\ECE 266\LabGroupF3\.jxbrowser.userdata\Default\Site Characteristics Database/000009.log: OK
+2026/02/26-09:44:33.712 14aa0 Table #4: 2 entries OK
+2026/02/26-09:44:33.712 14aa0 Table #7: 2 entries OK
+2026/02/26-09:44:33.712 14aa0 Table #10: 1 entries OK
+2026/02/26-09:44:33.715 14aa0 Archiving C:\Users\conav\Documents\UIC\Classes Spring 2026\ECE 266\LabGroupF3\.jxbrowser.userdata\Default\Site Characteristics Database/MANIFEST-000001: OK
+2026/02/26-09:44:33.731 14aa0 **** Repaired leveldb C:\Users\conav\Documents\UIC\Classes Spring 2026\ECE 266\LabGroupF3\.jxbrowser.userdata\Default\Site Characteristics Database; recovered 3 files; 567 bytes. Some data may have been lost. ****

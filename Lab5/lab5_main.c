@@ -50,6 +50,9 @@ static uint32_t LastMotionTime = 0; // time when motion was last seen
 Event buzzer_play_event;
 Event check_push_button_event;
 Event check_motion_event;           // New event for motion polling
+Event MotionEventTask;
+Event Motion_RegisterEvent;
+Event MotionEventRegister;
 
 /********************************************************************************
  * Task 1: If the system is activated and alerted, make the buzzer play

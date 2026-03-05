@@ -18,6 +18,9 @@
 // Initialize the PIR motion sensor (connected to PC4)
 void MotionInit(void);
 
+
+void MotionEventRegister(Event* callback_event); //register an event object with the motion sensor
+
 // Read the motion sensor input.
 // Returns non-zero if motion is detected, zero otherwise.
 int32_t MotionRead(void);

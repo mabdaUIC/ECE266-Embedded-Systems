@@ -14,8 +14,7 @@
 #include <assert.h>
 #include "launchpad.h"
 #include "buzzer.h"
-#include "motion.h"
-#include "pushbutton_sample.c"
+#include "motion.h"    // New header for motion sensor
 
 /********************************************************************************
  * Global declarations
@@ -210,7 +209,7 @@ int main(void)
     BuzzerInit();
     MotionInit();       // Initialized motion sensor
 
-    uprintf("%s\n\r", "Lab 4: Motion ");
+    uprintf("%s\n\r", "Lab 5: Motion ");
 
     // Initialize the event objects
     EventInit(&buzzer_play_event, BuzzerPlay);

@@ -4,5 +4,5 @@
 
 USER_OBJS :=
 
-LIBS := -llibc.a -l"C:/Users/conav/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/Debug/Util.lib" -l"C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/ccs/Debug/driverlib.lib"
+LIBS := -l"C:/Users/Muhammad/Downloads/TivaWare_C_Series-2.2.0.295/TivaWare_C_Series-2.2.0.295/driverlib/rvmdk/driverlib.lib" -l"C:/School/Spring2026/ECE266/LabGroupF3/Util/Debug/Util.lib" -llibc.a
 

@@ -13,10 +13,10 @@ motion.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/machi
 motion.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/machine/_stdint.h
 motion.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/sys/_stdint.h
 motion.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdbool.h
-motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_memmap.h
-motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_gpio.h
-motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/gpio.h
-motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/sysctl.h
+motion.obj: C:/Users/Muhammad/Downloads/TivaWare_C_Series-2.2.0.295/TivaWare_C_Series-2.2.0.295/inc/hw_memmap.h
+motion.obj: C:/Users/Muhammad/Downloads/TivaWare_C_Series-2.2.0.295/TivaWare_C_Series-2.2.0.295/inc/hw_gpio.h
+motion.obj: C:/Users/Muhammad/Downloads/TivaWare_C_Series-2.2.0.295/TivaWare_C_Series-2.2.0.295/driverlib/gpio.h
+motion.obj: C:/Users/Muhammad/Downloads/TivaWare_C_Series-2.2.0.295/TivaWare_C_Series-2.2.0.295/driverlib/sysctl.h
 
 ../motion.c:
 
@@ -44,11 +44,11 @@ C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/sys/_stdint.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdbool.h:
 
-C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_memmap.h:
+C:/Users/Muhammad/Downloads/TivaWare_C_Series-2.2.0.295/TivaWare_C_Series-2.2.0.295/inc/hw_memmap.h:
 
-C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_gpio.h:
+C:/Users/Muhammad/Downloads/TivaWare_C_Series-2.2.0.295/TivaWare_C_Series-2.2.0.295/inc/hw_gpio.h:
 
-C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/gpio.h:
+C:/Users/Muhammad/Downloads/TivaWare_C_Series-2.2.0.295/TivaWare_C_Series-2.2.0.295/driverlib/gpio.h:
 
-C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/sysctl.h:
+C:/Users/Muhammad/Downloads/TivaWare_C_Series-2.2.0.295/TivaWare_C_Series-2.2.0.295/driverlib/sysctl.h:
 

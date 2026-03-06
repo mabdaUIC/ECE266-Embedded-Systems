@@ -15,7 +15,7 @@ ORDERED_OBJS += \
 "./lab5_main.obj" \
 "./motion.obj" \
 "./motion_asm.obj" \
-"./pushbutton_sample.obj" \
+"./pushbutton.obj" \
 "./tm4c123gh6pm_startup_ccs.obj" \
 "../tm4c123gh6pm.cmd" \
 $(GEN_CMDS__FLAG) \
@@ -149,8 +149,8 @@ Lab5.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "buzzer.obj" "buzzer_asm.obj" "lab5_main.obj" "motion.obj" "motion_asm.obj" "pushbutton_sample.obj" "tm4c123gh6pm_startup_ccs.obj" 
-	-$(RM) "buzzer.d" "lab5_main.d" "motion.d" "pushbutton_sample.d" "tm4c123gh6pm_startup_ccs.d" 
+	-$(RM) "buzzer.obj" "buzzer_asm.obj" "lab5_main.obj" "motion.obj" "motion_asm.obj" "pushbutton.obj" "tm4c123gh6pm_startup_ccs.obj" 
+	-$(RM) "buzzer.d" "lab5_main.d" "motion.d" "pushbutton.d" "tm4c123gh6pm_startup_ccs.d" 
 	-$(RM) "buzzer_asm.d" "motion_asm.d" 
 	-@echo 'Finished clean'
 	-@echo ' '

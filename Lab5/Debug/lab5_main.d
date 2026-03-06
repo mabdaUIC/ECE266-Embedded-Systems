@@ -33,9 +33,7 @@ lab5_main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/timer.h
 lab5_main.obj: C:/Users/conav/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h
 lab5_main.obj: ../buzzer.h
 lab5_main.obj: ../motion.h
-lab5_main.obj: ../pushbutton_sample.c
-lab5_main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/rom_map.h
-lab5_main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/rom.h
+lab5_main.obj: ../pushbutton.h
 
 ../lab5_main.c:
 
@@ -103,9 +101,5 @@ C:/Users/conav/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/even
 
 ../motion.h:
 
-../pushbutton_sample.c:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/rom_map.h:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/rom.h:
+../pushbutton.h:
 

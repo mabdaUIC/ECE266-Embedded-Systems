@@ -1,5 +1,5 @@
 /*
- * Lab 4 starter code
+ * Lab 5 starter code
  * ECE 266, spring 2026
  *
  * lab4_main.c: Implement the tasks for a motion detection alarm.
@@ -15,7 +15,7 @@
 #include "launchpad.h"
 #include "buzzer.h"
 #include "motion.h"
-#include "pushbutton_sample.c"
+#include "pushbutton.h"
 
 /********************************************************************************
  * Global declarations
@@ -205,32 +205,30 @@ void CheckPushButton(Event *event)
 
 int main(void)
 {
-    // Initialize the Tiva C LaunchPad and 7-seg
+    // Initialize hardware
     LaunchPadInit();
     BuzzerInit();
-    MotionInit();       // Initialized motion sensor
+    MotionInit();
 
-    uprintf("%s\n\r", "Lab 4: Motion ");
+    uprintf("%s\n\r", "Lab 5: Motion Detection Alarm (Interrupt based)");
 
-    // Initialize the event objects
+    // Initialize event objects
     EventInit(&buzzer_play_event, BuzzerPlay);
     EventInit(&check_push_button_event, CheckPushButton);
-    EventInit(&check_motion_event, CheckMotion); // New event
+    EventInit(&check_motion_event, CheckMotion);
 
-    // Register ISR event
+    // Register callback events with the ISRs
     PushButtonEventRegister(&check_push_button_event);
+    MotionEventRegister(&check_motion_event);
 
-    // Schedule initial call backs
+    // Schedule first callback events
     EventSchedule(&buzzer_play_event, 100);
-    EventSchedule(&check_motion_event, 200);    // Start polling motion
+    EventSchedule(&check_motion_event, 200);
 
     // Run the callback scheduler
     while (true)
     {
-        // Wait for interrupt events (include callback events)
-        asm("   wfi");
-
-        // Run callback events
-        EventExecute();
+        asm("   wfi");           // wait for interrupt
+        EventExecute();           // execute any scheduled callbacks
     }
 }

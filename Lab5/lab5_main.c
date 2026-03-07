@@ -113,7 +113,7 @@ int main(void)
     BuzzerInit();
     MotionInit();
 
-    uprintf("%s\n\r", "Lab 5: Motion Detection Alarm (Interrupt‑based)");
+    uprintf("%s\n\r", "Lab 5: Motion Detection Alarm (Interrupt based)");
 
     // Initialize event objects
     EventInit(&buzzer_play_event, BuzzerPlay);

@@ -15,13 +15,16 @@ ORDERED_OBJS += \
 "./lab5_main.obj" \
 "./motion.obj" \
 "./motion_asm.obj" \
+<<<<<<< HEAD
 "./pushbutton.obj" \
+=======
+>>>>>>> 8eae2b7e9bef69a6d8f74fc9f265c13abd5a5074
 "./tm4c123gh6pm_startup_ccs.obj" \
 "../tm4c123gh6pm.cmd" \
 $(GEN_CMDS__FLAG) \
+-l"C:/Users/Muhammad/Downloads/TivaWare_C_Series-2.2.0.295/TivaWare_C_Series-2.2.0.295/driverlib/rvmdk/driverlib.lib" \
+-l"C:/School/Spring2026/ECE266/LabGroupF3/Util/Debug/Util.lib" \
 -llibc.a \
--l"C:/Users/conav/Documents/UIC/Classes Spring 2026/ECE 266/LabGroupF3/Util/Debug/Util.lib" \
--l"C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/ccs/Debug/driverlib.lib" \
 
 -include ../makefile.init
 
@@ -142,15 +145,20 @@ all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 Lab5.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: Arm Linker'
-	"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"Lab5.map" --heap_size=0 --stack_size=512 -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/lib" -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="Lab5_linkInfo.xml" --rom_model -o "Lab5.out" $(ORDERED_OBJS)
+	"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"Lab5.map" --heap_size=2048 --stack_size=2048 -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/lib" -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="Lab5_linkInfo.xml" --rom_model -o "Lab5.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
+<<<<<<< HEAD
 	-$(RM) "buzzer.obj" "buzzer_asm.obj" "lab5_main.obj" "motion.obj" "motion_asm.obj" "pushbutton.obj" "tm4c123gh6pm_startup_ccs.obj" 
 	-$(RM) "buzzer.d" "lab5_main.d" "motion.d" "pushbutton.d" "tm4c123gh6pm_startup_ccs.d" 
+=======
+	-$(RM) "buzzer.obj" "buzzer_asm.obj" "lab5_main.obj" "motion.obj" "motion_asm.obj" "tm4c123gh6pm_startup_ccs.obj" 
+	-$(RM) "buzzer.d" "lab5_main.d" "motion.d" "tm4c123gh6pm_startup_ccs.d" 
+>>>>>>> 8eae2b7e9bef69a6d8f74fc9f265c13abd5a5074
 	-$(RM) "buzzer_asm.d" "motion_asm.d" 
 	-@echo 'Finished clean'
 	-@echo ' '

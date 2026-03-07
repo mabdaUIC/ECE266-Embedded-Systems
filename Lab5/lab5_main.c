@@ -14,8 +14,12 @@
 #include <assert.h>
 #include "launchpad.h"
 #include "buzzer.h"
+<<<<<<< HEAD
 #include "motion.h"
 #include "pushbutton.h"
+=======
+#include "motion.h"    // New header for motion sensor
+>>>>>>> 8eae2b7e9bef69a6d8f74fc9f265c13abd5a5074
 
 /********************************************************************************
  * Global declarations
@@ -51,6 +55,9 @@ static uint32_t LastMotionTime = 0; // time when motion was last seen
 Event buzzer_play_event;
 Event check_push_button_event;
 Event check_motion_event;           // New event for motion polling
+Event MotionEventTask;
+Event Motion_RegisterEvent;
+Event MotionEventRegister;
 
 /********************************************************************************
  * Task 1: If the system is activated and alerted, make the buzzer play
@@ -210,7 +217,11 @@ int main(void)
     BuzzerInit();
     MotionInit();
 
+<<<<<<< HEAD
     uprintf("%s\n\r", "Lab 5: Motion Detection Alarm (Interrupt based)");
+=======
+    uprintf("%s\n\r", "Lab 5: Motion ");
+>>>>>>> 8eae2b7e9bef69a6d8f74fc9f265c13abd5a5074
 
     // Initialize event objects
     EventInit(&buzzer_play_event, BuzzerPlay);

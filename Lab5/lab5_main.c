@@ -1,215 +1,111 @@
-/*
- * Lab 5 starter code
- * ECE 266, spring 2026
- *
- * lab4_main.c: Implement the tasks for a motion detection alarm.
- *
- * Created by Zhao Zhang
- * Revised by Group F3
- *
- */
-
 #include <stdint.h>
 #include <stdbool.h>
 #include <assert.h>
 #include "launchpad.h"
 #include "buzzer.h"
-<<<<<<< HEAD
 #include "motion.h"
-#include "pushbutton.h"
-=======
-#include "motion.h"    // New header for motion sensor
->>>>>>> 8eae2b7e9bef69a6d8f74fc9f265c13abd5a5074
+#include "pushbutton.h"          // Use the real pushbutton header, not the sample
 
 /********************************************************************************
  * Global declarations
  *******************************************************************************/
-
-// The data structure for the system state
 typedef struct {
-    // Activated state: if the system is activated or not
     bool activated;
-
-    // Alert state: If the alert is on or off
     bool alerted;
-
-    // Sound state: If the buzzer is turned on to make a sound or not
-    // Note: When the system is activated and alerted, the buzzer is turned
-    // on and off periodically
     bool buzzer_on;
 } SysState;
 
-// The system state
-static SysState sys =
-{
-    false /* not activated */,
-    false /* not alerted */,
-    false /* buzzer not turned on */
-};
+static SysState sys = { false, false, false };
+static uint32_t LastMotionTime = 0;   // for 3‑second hold
 
-
-// Optional: for 3-second hold feature
-static uint32_t LastMotionTime = 0; // time when motion was last seen
-
-// The events
+// Event objects
 Event buzzer_play_event;
 Event check_push_button_event;
-Event check_motion_event;           // New event for motion polling
-Event MotionEventTask;
-Event Motion_RegisterEvent;
-Event MotionEventRegister;
+Event check_motion_event;
 
 /********************************************************************************
- * Task 1: If the system is activated and alerted, make the buzzer play
- * on/off sound. The buzzer will be repeatedly turned on and off.
- *
- * You may adjust the on and off times to change the sound pattern and intensity.
- *
- * Note: This is a callback function.
+ * Task 1: Buzzer play (callback)
  *******************************************************************************/
-
-void BuzzerPlay(Event *event)                   // the scheduled time
+void BuzzerPlay(Event *event)
 {
-    uint32_t delay = 500;                       // default checking interval
+    uint32_t delay = 500;
 
-    if (sys.alerted)
-    {
-        // Turn buzzer on and off
-        if (sys.buzzer_on)
-        {
-            // The buzzer is on: turn it off
+    if (sys.alerted) {
+        if (sys.buzzer_on) {
             BuzzerOff();
             sys.buzzer_on = false;
-            delay = 2988;                       // off for 2988 ms
-        }
-        else
-        {
-            // The buzzer is off: turn it on
+            delay = 2988;
+        } else {
             BuzzerOn();
             sys.buzzer_on = true;
-            delay = 15;                         // on for 12 ms
+            delay = 15;
         }
-    }
-    else
-    {
-        // Make sure the buzzer is turned off
-        if (sys.buzzer_on)
-        {
+    } else {
+        if (sys.buzzer_on) {
             BuzzerOff();
             sys.buzzer_on = false;
         }
     }
-
-    // schedule callback to buzzer play
     EventSchedule(event, event->time + delay);
 }
 
 /********************************************************************************
- * Task 2: YOUR CODE, check the motion sensor
- *
- * Check the motion sensor input. If motion is detected, put the system
- * in the alerted state. Otherwise, put it in the non-alerted state.
- *
- * This is a callback function. In the next lab, you will re-write this function
- * to make it interrupt based.
+ * Task 2: Check motion (callback) – now reads interrupt‑updated state
  *******************************************************************************/
-
 void CheckMotion(Event *event)
 {
-    // Read motion sensor (assembly function returns non-zero if motion detected
-    int32_t motion = MotionRead();
+    int32_t motion = MotionRead();          // returns last recorded motion
 
-    // Optional: For 3-second hold, record the time when motion is seen
-    // Requires a global variable and using event->time (current time)
-    if (motion)
-    {
-        LastMotionTime = event->time;       // update last motion time
+    if (motion) {
+        LastMotionTime = event->time;
     }
 
-    if (sys.activated)
-    {
-        // Decide alert state
-        //Basic version: alert = motion detected now
-        // Optional 3-second hold: alert = (event->time - lastMotionTime) < 3000 ms
+    if (sys.activated) {
         uint32_t timeSinceMotion = event->time - LastMotionTime;
-        sys.alerted = (timeSinceMotion < 3000); // hold for 3 seconds
-        // (Optional) Print status for debugging
-        // uprintf("Motion: %d, alerted: %d\n\r", motion, sys.alerted);
-    }
-    else
-    {
+        sys.alerted = (timeSinceMotion < 3000);   // 3‑second hold
+    } else {
         sys.alerted = false;
     }
 
-    // Update LED color based on alert state (and activation)
-    if (sys.activated)
-    {
+    // Update LED
+    if (sys.activated) {
         if (sys.alerted)
-            LedTurnOnOff(true, false, false); // red
+            LedTurnOnOff(true, false, false);   // red
         else
-            LedTurnOnOff(false, false, true); // green
-    }
-    else
-    {
-        LedTurnOnOff(false, false, false); // off
+            LedTurnOnOff(false, false, true);   // green
+    } else {
+        LedTurnOnOff(false, false, false);      // off
     }
 
-    // Schedule next check (e.g., every 200 ms)
-    EventSchedule(event, event->time + 200);
+    EventSchedule(event, event->time + 200);     // check every 200 ms
 }
 
 /********************************************************************************
- * Task 3: Check push buttons.
- *
- * In the starter code: Pushing SW1 activates the system and put it in the
- * alerted state. Pushing SW2 deactivates the system.
- *
- * IN YOUR SOLUTION CODE: Pushing SW1 activates the system. Pushing SW2
- * deactivates the system. If the system is activated, the motion sensor
- * input decides if the system is put in the alerted state or not.
- *
- * This function is called upon interrupts. It is NOT a callback function.
- *
- * YOU NEED TO REVISE THIS FUNCTION
- *
+ * Task 3: Check push buttons (called from ISR, not a callback)
  *******************************************************************************/
-
 void CheckPushButton(Event *event)
 {
-    int code = PushButtonRead();        // read the pushbutton
-    switch (code)
-    {
-    case 1:                     // SW1 is pushed
-        if (!sys.activated)
-        {
-            // Activate the system
+    int code = PushButtonRead();
+    switch (code) {
+    case 1:                     // SW1
+        if (!sys.activated) {
             sys.activated = true;
-
-            // Not Needed since sys.alerted will be set by CheckMotion
-            // sys.alerted = true;
-            // LedTurnOnOff(true /* red */, false /* blue */, false /* green */);
-
+            // alerted will be set by CheckMotion
         }
         break;
-
-    case 2:                     // SW2 is pushed
-        if (sys.activated)
-        {
-            // De-activate the system and turn off LED
+    case 2:                     // SW2
+        if (sys.activated) {
             sys.activated = false;
             sys.alerted = false;
-            LedTurnOnOff(false /* red */, false /* blue */, false /* green */);
+            LedTurnOnOff(false, false, false);
         }
         break;
     }
 }
 
-
 /********************************************************************************
- * The main function: Print out a message, schedule the first callback event(s),
- * and then run the callback scheduler.
+ * main()
  *******************************************************************************/
-
 int main(void)
 {
     // Initialize hardware
@@ -217,11 +113,7 @@ int main(void)
     BuzzerInit();
     MotionInit();
 
-<<<<<<< HEAD
-    uprintf("%s\n\r", "Lab 5: Motion Detection Alarm (Interrupt based)");
-=======
-    uprintf("%s\n\r", "Lab 5: Motion ");
->>>>>>> 8eae2b7e9bef69a6d8f74fc9f265c13abd5a5074
+    uprintf("%s\n\r", "Lab 5: Motion Detection Alarm (Interrupt‑based)");
 
     // Initialize event objects
     EventInit(&buzzer_play_event, BuzzerPlay);
@@ -234,12 +126,11 @@ int main(void)
 
     // Schedule first callback events
     EventSchedule(&buzzer_play_event, 100);
-    EventSchedule(&check_motion_event, 200);
+    EventSchedule(&check_motion_event, 200);   // keep periodic check
 
     // Run the callback scheduler
-    while (true)
-    {
-        asm("   wfi");           // wait for interrupt
-        EventExecute();           // execute any scheduled callbacks
+    while (true) {
+        asm("   wfi");
+        EventExecute();
     }
 }

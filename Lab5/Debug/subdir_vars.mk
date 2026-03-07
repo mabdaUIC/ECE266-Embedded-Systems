@@ -16,20 +16,14 @@ C_SRCS += \
 ../buzzer.c \
 ../lab5_main.c \
 ../motion.c \
-<<<<<<< HEAD
 ../pushbutton.c \
-=======
->>>>>>> 8eae2b7e9bef69a6d8f74fc9f265c13abd5a5074
 ../tm4c123gh6pm_startup_ccs.c 
 
 C_DEPS += \
 ./buzzer.d \
 ./lab5_main.d \
 ./motion.d \
-<<<<<<< HEAD
 ./pushbutton.d \
-=======
->>>>>>> 8eae2b7e9bef69a6d8f74fc9f265c13abd5a5074
 ./tm4c123gh6pm_startup_ccs.d 
 
 OBJS += \
@@ -38,10 +32,7 @@ OBJS += \
 ./lab5_main.obj \
 ./motion.obj \
 ./motion_asm.obj \
-<<<<<<< HEAD
 ./pushbutton.obj \
-=======
->>>>>>> 8eae2b7e9bef69a6d8f74fc9f265c13abd5a5074
 ./tm4c123gh6pm_startup_ccs.obj 
 
 ASM_DEPS += \
@@ -54,20 +45,14 @@ OBJS__QUOTED += \
 "lab5_main.obj" \
 "motion.obj" \
 "motion_asm.obj" \
-<<<<<<< HEAD
 "pushbutton.obj" \
-=======
->>>>>>> 8eae2b7e9bef69a6d8f74fc9f265c13abd5a5074
 "tm4c123gh6pm_startup_ccs.obj" 
 
 C_DEPS__QUOTED += \
 "buzzer.d" \
 "lab5_main.d" \
 "motion.d" \
-<<<<<<< HEAD
 "pushbutton.d" \
-=======
->>>>>>> 8eae2b7e9bef69a6d8f74fc9f265c13abd5a5074
 "tm4c123gh6pm_startup_ccs.d" 
 
 ASM_DEPS__QUOTED += \
@@ -78,10 +63,7 @@ C_SRCS__QUOTED += \
 "../buzzer.c" \
 "../lab5_main.c" \
 "../motion.c" \
-<<<<<<< HEAD
 "../pushbutton.c" \
-=======
->>>>>>> 8eae2b7e9bef69a6d8f74fc9f265c13abd5a5074
 "../tm4c123gh6pm_startup_ccs.c" 
 
 ASM_SRCS__QUOTED += \

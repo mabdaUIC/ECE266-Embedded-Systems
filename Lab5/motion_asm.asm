@@ -1,19 +1,12 @@
 ; motion_asm.asm – Assembly functions for PIR motion sensor
+; Modified for interrupt‑based operation
 
-        .cdecls "motion.h"
+        .cdecls "motion.h"          ; include C declarations
         .text
 
-<<<<<<< HEAD
 ; Reference to the global motion sensor state variable
         .ref motion_sensor
 _motion_sensor   .field motion_sensor
-=======
-		.ref	MotionStatus ;pointer to variable
-_MotionStatus	.field	MotionStatus
-
-; Declare the GPIO base adress for Port C (32-bit value)
-_GPIO_PORTC_BASE		.field GPIO_PORTC_BASE
->>>>>>> 8eae2b7e9bef69a6d8f74fc9f265c13abd5a5074
 
 ;******************************************************************************
 ; C prototype: int32_t MotionRead()
@@ -24,8 +17,7 @@ _GPIO_PORTC_BASE		.field GPIO_PORTC_BASE
         .global MotionRead
         .asmfunc
 MotionRead
-<<<<<<< HEAD
-        PUSH    {LR}
+        PUSH    {LR}                ; save return address
 
         ; Load address of motion_sensor
         LDR     r0, _motion_sensor
@@ -50,24 +42,3 @@ no_new_input
         MOV     r0, #0
         POP     {PC}
         .endasmfunc
-=======
-		PUSH	{LR}     ; save the return adress
-		LDR	R1, _MotionStatus ;load MotionStatus
-
-		;call GPIOPinRead(GPIO_PORTC_BASE,GPIO_PIN_4)
-		LDR		r0, _GPIO_PORTC_BASE
-		MOV 	r1, #GPIO_PIN_4
-		BL		GPIOPinRead
-		LDR	R0, [R1, #0] ;load isMotionDetected
-
-		; GPIOPinRead returns a bitmask with the requested pins.
-		; If PC4 is high, the result will have bit 4 set (non-zero).
-		; We can return it directly (the caller only cares about zero/non-zero).
-		;clear the lfag after reading
-		MOV	R2, #0
-		STR	R2, [R1, #0]
-
-		POP 	{PC} 		; Return
-		BX	LR ;return
-		.endasmfunc
->>>>>>> 8eae2b7e9bef69a6d8f74fc9f265c13abd5a5074

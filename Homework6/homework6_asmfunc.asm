@@ -1,63 +1,73 @@
 ;****************************************************************
-; homework6_asmfunc.asm: Assembly code for homework 7 assignment.
-;
-; Created by Zhao Zhang for ECE 266, spring 2026
+; homework6_asmfunc.asm – clean version (no delays)
 ;****************************************************************
-
-; include the C declarations in homework7.h in this assembly program
-                .cdecls "homework7.h"
-
+                .cdecls "homework6.h"
                 .text
 
-;****************************************************************
-; copy4ByPreIndex(int Y[], int X[])
-;   Copy from array X[] to Array Y[], the size is fixed at four.
-;   Must use pre-index in all load/store instructions.
-;****************************************************************
                 .global Copy4ByPreIndex
 Copy4ByPreIndex .asmfunc
-
+                LDR r2, [r1, #0]
+                STR r2, [r0, #0]
+                LDR r2, [r1, #4]
+                STR r2, [r0, #4]
+                LDR r2, [r1, #8]
+                STR r2, [r0, #8]
+                LDR r2, [r1, #12]
+                STR r2, [r0, #12]
+                BX  lr
                 .endasmfunc
 
-;****************************************************************
-; copy4ByPreIndexUpdate(int Y[], int X[])
-;   Copy from array X[] to Array Y[], the size is fixed at four.
-;   Must use pre-index with update in most load/store instructions.
-;****************************************************************
                 .global Copy4ByPreIndexUpdate
 Copy4ByPreIndexUpdate .asmfunc
-
+                LDR r2, [r1]
+                STR r2, [r0]
+                LDR r2, [r1, #4]!
+                STR r2, [r0, #4]!
+                LDR r2, [r1, #4]!
+                STR r2, [r0, #4]!
+                LDR r2, [r1, #4]!
+                STR r2, [r0, #4]!
+                BX  lr
                 .endasmfunc
 
-;****************************************************************
-; copy4ByPostIndex(int Y[], int X[])
-;   Copy from array X[] to Array Y[], the size is fixed at four.
-;   Must use post-index in most load/store instructions.
-;****************************************************************
                 .global Copy4ByPostIndex
 Copy4ByPostIndex .asmfunc
-
+                LDR r2, [r1], #4
+                STR r2, [r0], #4
+                LDR r2, [r1], #4
+                STR r2, [r0], #4
+                LDR r2, [r1], #4
+                STR r2, [r0], #4
+                LDR r2, [r1], #4
+                STR r2, [r0], #4
+                BX  lr
                 .endasmfunc
 
-;****************************************************************
-; copy4ByRegOffset mult64(int Y[], int X[])
-;   Copy from array X[] to Array Y[], the size is fixed at four.
-;   Must use register offset in most load/store instructions.
-;****************************************************************
                 .global Copy4ByRegOffset
 Copy4ByRegOffset .asmfunc
-
+                MOV r2, #0
+                LDR r3, [r1, r2]
+                STR r3, [r0, r2]
+                ADD r2, #4
+                LDR r3, [r1, r2]
+                STR r3, [r0, r2]
+                ADD r2, #4
+                LDR r3, [r1, r2]
+                STR r3, [r0, r2]
+                ADD r2, #4
+                LDR r3, [r1, r2]
+                STR r3, [r0, r2]
+                BX  lr
                 .endasmfunc
 
-;****************************************************************
-; void swap2(short X[], short Y[], int i)
-;   Swap X[i] and Y[i]
-;****************************************************************
                 .global Swap2
 Swap2           .asmfunc
-
+                LSL r2, r2, #1
+                ADD r0, r0, r2
+                ADD r1, r1, r2
+                LDRH r3, [r0]
+                LDRH r12, [r1]
+                STRH r12, [r0]
+                STRH r3, [r1]
+                BX  lr
                 .endasmfunc
-
-
-	        BX   lr		; an extra return instruction
-	               		; for the starter code to return

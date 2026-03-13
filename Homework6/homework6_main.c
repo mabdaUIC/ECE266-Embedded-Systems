@@ -1,12 +1,71 @@
 /*
- * homework7_main.c for homework 6
+ * homework6_main.c for homework 6
  * ECE 266, spring 2026
  * Created by Zhao Zhang
+ * MODIFIED: Ultra‑safe character‑by‑character printing with delays
  */
 
 #include <stdio.h>
 #include "launchpad.h"
-#include "homework7.h"
+#include "homework6.h"
+
+// Very long delay to let UART transmit
+void longDelay(void) {
+    volatile int i;
+    for (i = 0; i < 500000; i++);   // adjust if needed
+}
+
+// Print a string character by character with delays
+void slowPrint(const char *s) {
+    while (*s) {
+        uprintf("%c", *s++);
+        longDelay();
+    }
+}
+
+// Print an integer as a string with delays
+void slowPrintInt(int val) {
+    char buffer[12];                 // enough for 32-bit int
+    sprintf(buffer, "%d", val);
+    slowPrint(buffer);
+}
+
+// Print a short as an integer
+void slowPrintShort(short val) {
+    slowPrintInt((int)val);
+}
+
+// Print the whole test line for copy functions
+void printCopyLine(const char* label, int x[], int y[]) {
+    slowPrint(label);
+    slowPrint(" X1[] = {");
+    slowPrintInt(x[0]); slowPrint(", ");
+    slowPrintInt(x[1]); slowPrint(", ");
+    slowPrintInt(x[2]); slowPrint(", ");
+    slowPrintInt(x[3]); slowPrint("}, Y1[] = {");
+    slowPrintInt(y[0]); slowPrint(", ");
+    slowPrintInt(y[1]); slowPrint(", ");
+    slowPrintInt(y[2]); slowPrint(", ");
+    slowPrintInt(y[3]); slowPrint("}\n\r");
+    longDelay(); longDelay();        // extra pause between lines
+}
+
+// Print swap test line
+void printSwapLine(const char* label, short x[], short y[]) {
+    slowPrint(label);
+    slowPrint(" X2[] = {");
+    slowPrintShort(x[0]); slowPrint(", ");
+    slowPrintShort(x[1]); slowPrint(", ");
+    slowPrintShort(x[2]); slowPrint(", ");
+    slowPrintShort(x[3]); slowPrint(", ");
+    slowPrintShort(x[4]); slowPrint("}, Y2[] = {");
+    slowPrintShort(y[0]); slowPrint(", ");
+    slowPrintShort(y[1]); slowPrint(", ");
+    slowPrintShort(y[2]); slowPrint(", ");
+    slowPrintShort(y[3]); slowPrint(", ");
+    slowPrintShort(y[4]); slowPrint("}\n\r");
+    longDelay(); longDelay();
+}
 
 void ClearArray(int Y[])
 {
@@ -19,52 +78,41 @@ int main(void)
     int Y1[4];
     short X2[5] = { 1, 2, 3, 4, 5 };
     short Y2[5] = { -1, -2, -3, -4, -5 };
+    volatile int i;
 
     LaunchPadInit();
 
-    //
-    // Test copy functions
-    //
+    // Very long initial delay to let UART stabilize
+    for (i = 0; i < 5000000; i++);
 
-    uprintf("\n\r*** Test copyArray functions ***\n\r");
+    slowPrint("\n\r*** Test copyArray functions ***\n\r");
+    longDelay();
+
     ClearArray(Y1);
     Copy4ByPreIndex(Y1, X1);
-    uprintf("By pre-index: X1[] = {%d, %d, %d, %d}, Y1[] = {%d, %d, %d, %d}\n\r",
-            X1[0], X1[1], X1[2], X1[3], Y1[0], Y1[1], Y1[2], Y1[3]);
+    printCopyLine("By pre-index:", X1, Y1);
 
     ClearArray(Y1);
     Copy4ByPreIndexUpdate(Y1, X1);
-    uprintf("By pre-index with update: X1[] = {%d, %d, %d, %d}, Y1[] = {%d, %d, %d, %d}\n\r",
-            X1[0], X1[1], X1[2], X1[3], Y1[0], Y1[1], Y1[2], Y1[3]);
+    printCopyLine("By pre-index with update:", X1, Y1);
 
     ClearArray(Y1);
     Copy4ByPostIndex(Y1, X1);
-    uprintf("By post-index: X1[] = {%d, %d, %d, %d}, Y1[] = {%d, %d, %d, %d}\n\r",
-            X1[0], X1[1], X1[2], X1[3], Y1[0], Y1[1], Y1[2], Y1[3]);
+    printCopyLine("By post-index:", X1, Y1);
 
     ClearArray(Y1);
     Copy4ByRegOffset(Y1, X1);
-    uprintf("By register offset: X1[] = {%d, %d, %d, %d}, Y1[] = {%d, %d, %d, %d}\n\r",
-            X1[0], X1[1], X1[2], X1[3], Y1[0], Y1[1], Y1[2], Y1[3]);
+    printCopyLine("By register offset:", X1, Y1);
 
-    //
-    // Test swap2 function
-    //
+    slowPrint("\n\r*** Test swap ***\n\r");
+    longDelay();
 
-    uprintf("\n\r*** Test swap ***\n\r");
     Swap2(X2, Y2, 1);
-    uprintf("First swap, index 1: X2[] = {%d, %d, %d, %d, %d}, Y2[] = {%d, %d, %d, %d, %d}\n\r",
-            (int) X2[0], (int) X2[1], (int) X2[2], (int) X2[3], (int) X2[4],
-            (int) Y2[0], (int) Y2[1], (int) Y2[2], (int) Y2[3], (int) Y2[4]);
+    printSwapLine("First swap, index 1:", X2, Y2);
 
     Swap2(X2, Y2, 3);
-    uprintf("Second swap, index 3: X2[] = {%d, %d, %d, %d, %d}, Y2[] = {%d, %d, %d, %d, %d}\n\r",
-            (int) X2[0], (int) X2[1], (int) X2[2], (int) X2[3], (int) X2[4],
-            (int) Y2[0], (int) Y2[1], (int) Y2[2], (int) Y2[3], (int) Y2[4]);
+    printSwapLine("Second swap, index 3:", X2, Y2);
 
     // Never exit
-    while (true)
-    {
-    }
+    while (1) { }
 }
-

@@ -1,12 +1,3 @@
-/*
- * ras.h  –  ECE 266 Lab 6, spring 2026
- *
- * IMPORTANT: this header is included by ras_asm.asm via .cdecls "ras.h"
- * so it MUST include every header needed by the assembly (hw_memmap.h for
- * ADC0_BASE, driverlib/adc.h for ADCSequenceDataGet / ADCIntClear, etc.)
- * This mirrors the pattern used by temp_sensor.h / temp_sensor_asm.asm.
- */
-
 #ifndef RAS_H_
 #define RAS_H_
 

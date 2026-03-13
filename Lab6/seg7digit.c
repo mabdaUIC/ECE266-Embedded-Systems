@@ -18,7 +18,7 @@
  *
  * Note: The table is incomplete. Fill the codes for digits 4-9.
  */
-static uint8_t seg7_coding_table[10] = {
+static uint8_t seg7_coding_table[11] = {
         0b00111111,         // digit 0
         0b00000110,         // digit 1
         0b01011011,         // digit 2
@@ -29,6 +29,7 @@ static uint8_t seg7_coding_table[10] = {
         0b00000111,         // digit 7
         0b01111111,         // digit 8
         0b01101111,         // digit 9
+        0b00000000,         // digit 10
 
 
 };

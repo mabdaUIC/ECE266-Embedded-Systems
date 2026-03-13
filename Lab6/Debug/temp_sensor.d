@@ -20,7 +20,7 @@ temp_sensor.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_ints.h
 temp_sensor.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/sysctl.h
 temp_sensor.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/interrupt.h
 temp_sensor.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/adc.h
-temp_sensor.obj: C:/Users/conav/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/launchpad.h
+temp_sensor.obj: C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/launchpad.h
 temp_sensor.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_types.h
 temp_sensor.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_gpio.h
 temp_sensor.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_adc.h
@@ -31,7 +31,7 @@ temp_sensor.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/gpio.h
 temp_sensor.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/uart.h
 temp_sensor.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/timer.h
 temp_sensor.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/assert.h
-temp_sensor.obj: C:/Users/conav/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h
+temp_sensor.obj: C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h
 
 ../temp_sensor.c:
 
@@ -73,7 +73,7 @@ C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/interrupt.h:
 
 C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/adc.h:
 
-C:/Users/conav/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/launchpad.h:
+C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/launchpad.h:
 
 C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_types.h:
 
@@ -95,5 +95,5 @@ C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/timer.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/assert.h:
 
-C:/Users/conav/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h:
+C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h:
 

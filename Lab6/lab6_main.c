@@ -1,5 +1,7 @@
 /*
- * lab6_main.c – For J5 (PE2/AIN1) with full debug output.
+ * lab6_main.c – Final polling version for J5 (PE2/AIN1)
+ * Reads temperature and RAS by direct polling, displays alternately every 2 seconds.
+ * Terminal output: only "RAS Reading: XXX" and "Temperature Sensor Reading: XX.X"
  */
 
 #include <stdint.h>
@@ -84,13 +86,12 @@ int main(void)
 {
     uint32_t sysClock;
     uint32_t raw_temp, raw_ras;
-    float voltage;
 
     SysCtlClockSet(SYSCTL_SYSDIV_5 | SYSCTL_USE_PLL | SYSCTL_OSC_MAIN | SYSCTL_XTAL_16MHZ);
     sysClock = SysCtlClockGet();
     LaunchPadInit();
 
-    // Blue LED
+    // Blue LED heartbeat
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
     while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOF));
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2);
@@ -98,7 +99,7 @@ int main(void)
     Seg7Init();
     uprintf("Seg7Init done\r\n");
 
-    // Test pattern
+    // Optional test pattern (remove if desired)
     uint8_t test_codes[4] = {0b00000110, 0b01011011, 0b01001111, 0b01100110};
     uprintf("Display test pattern 1234...\r\n");
     Seg7RawUpdate(test_codes);
@@ -117,7 +118,6 @@ int main(void)
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);
     while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOE));
     GPIOPinTypeADC(GPIO_PORTE_BASE, GPIO_PIN_2);
-
     ADCSequenceConfigure(ADC0_BASE, 1, ADC_TRIGGER_PROCESSOR, 1);
     ADCSequenceStepConfigure(ADC0_BASE, 1, 0, ADC_CTL_CH1 | ADC_CTL_END);
     ADCSequenceEnable(ADC0_BASE, 1);
@@ -126,43 +126,37 @@ int main(void)
     uprintf("Entering main loop.\r\n");
 
     bool show_temperature = true;
-    int loop_count = 0;
 
     while (1)
     {
-        loop_count++;
-        uprintf("\n--- Loop %d ---\r\n", loop_count);
-
+        // Heartbeat
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
         SysCtlDelay(sysClock / 500);
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
 
-        // Temperature
+        // Read temperature
         ADCProcessorTrigger(ADC0_BASE, 0);
-        SysCtlDelay(sysClock / 100);
+        SysCtlDelay(sysClock / 100);   // 10 ms
         if (ADCSequenceDataGet(ADC0_BASE, 0, &raw_temp) != 0)
         {
             float temp_C = 147.5 - (75 * 3.3f * raw_temp / 4096.0f);
             g_temperature = temp_C * 1.8f + 32.0f;
-            uprintf("Temp raw: %u\n", raw_temp);
         }
 
-        // RAS
+        // Read RAS
         ADCProcessorTrigger(ADC0_BASE, 1);
         SysCtlDelay(sysClock / 100);
         if (ADCSequenceDataGet(ADC0_BASE, 1, &raw_ras) != 0)
         {
-            voltage = (raw_ras * 3.3f) / 4096.0f;
-            g_angle = (uint32_t)((raw_ras * 180.0f) / 4096.0f + 0.5f);
-            uprintf("RAS raw: %4u, Voltage: %.3f V, Angle: %u\n", raw_ras, voltage, g_angle);
+            g_angle = (raw_ras * 180UL + 2048) / 4096; // rounding
         }
 
-        // Required output
+        // Print required output
         int temp10 = (int)(g_temperature * 10);
-        uprintf("RAS Reading: %u\n", g_angle);
-        uprintf("Temperature Sensor Reading: %u.%u\n", temp10 / 10, temp10 % 10);
+        uprintf("RAS Reading: %u\r\n", g_angle);
+        uprintf("Temperature Sensor Reading: %u.%u\r\n", temp10 / 10, temp10 % 10);
 
-        // Display
+        // Update display (alternate)
         if (show_temperature)
             DisplayTemperature(g_temperature);
         else

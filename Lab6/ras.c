@@ -1,4 +1,4 @@
-// ras.c – Interrupt‑driven driver for rotary angle sensor
+// ras.c – Driver for rotary angle sensor on J5 (PE2/AIN1), interrupt-driven
 #include "ras.h"
 #include <inc/hw_memmap.h>
 #include <driverlib/adc.h>
@@ -20,7 +20,7 @@ void RasInit()
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);
     while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOE));
 
-    // Configure PE2 as analog input
+    // Configure PE2 as analog input (AIN1)
     GPIOPinTypeADC(GPIO_PORTE_BASE, GPIO_PIN_2);
 
     // Enable ADC0
@@ -31,7 +31,8 @@ void RasInit()
     ADCSequenceConfigure(ADC0_BASE, 1, ADC_TRIGGER_PROCESSOR, 1);
 
     // Step 0: channel 1 (AIN1) for PE2, interrupt, end of sequence
-    ADCSequenceStepConfigure(ADC0_BASE, 1, 0, ADC_CTL_CH1 | ADC_CTL_IE | ADC_CTL_END);
+    ADCSequenceStepConfigure(ADC0_BASE, 1, 0,
+                             ADC_CTL_CH1 | ADC_CTL_IE | ADC_CTL_END);
 
     // Register ISR (assembly)
     ADCIntRegister(ADC0_BASE, 1, RasISR);

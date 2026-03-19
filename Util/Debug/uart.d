@@ -14,6 +14,12 @@ uart.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/sys/_st
 uart.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdbool.h
 uart.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdarg.h
 uart.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdio.h
+uart.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_ints.h
+uart.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_memmap.h
+uart.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/gpio.h
+uart.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/pin_map.h
+uart.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/sysctl.h
+uart.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/uart.h
 
 ../uart.c:
 
@@ -42,4 +48,16 @@ C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdbool.h:
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdarg.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdio.h:
+
+C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_ints.h:
+
+C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_memmap.h:
+
+C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/gpio.h:
+
+C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/pin_map.h:
+
+C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/sysctl.h:
+
+C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/uart.h:
 

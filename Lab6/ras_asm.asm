@@ -1,38 +1,43 @@
-; ras_asm.asm – Assembly ISR for RAS on J5
+; ras_asm.asm – ISR for rotary angle sensor
+; Stores raw value in g_ras_raw and sets g_ras_ready flag.
+
         .cdecls "ras.h"
 
-        .ref    ras_state
-        .ref    EventSchedule
-        .ref    EventGetCurrentTime
+        .ref    g_ras_raw
+        .ref    g_ras_ready
         .ref    ADCSequenceDataGet
         .ref    ADCIntClear
 
-_ras_state      .field  ras_state
-_ADC0_BASE      .field  ADC0_BASE
+_ADC0_BASE      .field  0x40038000        ; ADC0 base address
+_g_ras_raw      .field  g_ras_raw
+_g_ras_ready    .field  g_ras_ready
 
         .text
+        .thumb
+        .global RasISR
+
+RasISR:
         .asmfunc
-RasISR
         push    {lr}
 
-        ; Read ADC result into ras_state.raw_data
+        ; Read ADC result
         LDR     r0, _ADC0_BASE
-        MOV     r1, #1                ; sequencer 1
-        LDR     r2, _ras_state
-        ADD     r2, #4                ; &ras_state.raw_data
+        MOV     r1, #1                  ; sequencer 1
+        SUB     sp, sp, #4
+        MOV     r2, sp
         BL      ADCSequenceDataGet
 
-        ; Set ras_state.new_input = true
-        LDR     r0, _ras_state
-        MOV     r1, #1
-        STRB    r1, [r0, #8]          ; offset of new_input
+        LDR     r1, [sp]
+        ADD     sp, sp, #4
 
-        ; Schedule callback event (dummy)
-        BL      EventGetCurrentTime
-        MOV     r1, r0
-        LDR     r0, _ras_state
-        LDR     r0, [r0]               ; ras_state.callback_event
-        BL      EventSchedule
+        ; Store raw value into g_ras_raw
+        LDR     r0, _g_ras_raw
+        STR     r1, [r0]
+
+        ; Set ready flag
+        LDR     r0, _g_ras_ready
+        MOV     r1, #1
+        STRB    r1, [r0]
 
         ; Clear interrupt
         LDR     r0, _ADC0_BASE

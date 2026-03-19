@@ -10,6 +10,7 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
+"./event.obj" \
 "./launchpad.obj" \
 "./led.obj" \
 "./pushbutton.obj" \
@@ -142,8 +143,8 @@ endif
 # Other Targets
 clean:
 	-$(RM) $(LIB_OUTPUTS__QUOTED)
-	-$(RM) "launchpad.obj" "led.obj" "pushbutton.obj" "uart.obj" 
-	-$(RM) "launchpad.d" "led.d" "pushbutton.d" "uart.d" 
+	-$(RM) "event.obj" "launchpad.obj" "led.obj" "pushbutton.obj" "uart.obj" 
+	-$(RM) "event.d" "launchpad.d" "led.d" "pushbutton.d" "uart.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

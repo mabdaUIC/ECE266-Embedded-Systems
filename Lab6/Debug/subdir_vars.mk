@@ -15,12 +15,16 @@ ASM_SRCS += \
 C_SRCS += \
 ../lab6_main.c \
 ../ras.c \
+../seg7digit.c \
+../seg7raw.c \
 ../temp_sensor.c \
 ../tm4c123gh6pm_startup_ccs.c 
 
 C_DEPS += \
 ./lab6_main.d \
 ./ras.d \
+./seg7digit.d \
+./seg7raw.d \
 ./temp_sensor.d \
 ./tm4c123gh6pm_startup_ccs.d 
 
@@ -28,6 +32,8 @@ OBJS += \
 ./lab6_main.obj \
 ./ras.obj \
 ./ras_asm.obj \
+./seg7digit.obj \
+./seg7raw.obj \
 ./temp_sensor.obj \
 ./temp_sensor_asm.obj \
 ./tm4c123gh6pm_startup_ccs.obj 
@@ -40,6 +46,8 @@ OBJS__QUOTED += \
 "lab6_main.obj" \
 "ras.obj" \
 "ras_asm.obj" \
+"seg7digit.obj" \
+"seg7raw.obj" \
 "temp_sensor.obj" \
 "temp_sensor_asm.obj" \
 "tm4c123gh6pm_startup_ccs.obj" 
@@ -47,6 +55,8 @@ OBJS__QUOTED += \
 C_DEPS__QUOTED += \
 "lab6_main.d" \
 "ras.d" \
+"seg7digit.d" \
+"seg7raw.d" \
 "temp_sensor.d" \
 "tm4c123gh6pm_startup_ccs.d" 
 
@@ -57,6 +67,8 @@ ASM_DEPS__QUOTED += \
 C_SRCS__QUOTED += \
 "../lab6_main.c" \
 "../ras.c" \
+"../seg7digit.c" \
+"../seg7raw.c" \
 "../temp_sensor.c" \
 "../tm4c123gh6pm_startup_ccs.c" 
 

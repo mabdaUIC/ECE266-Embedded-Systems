@@ -26,7 +26,7 @@ void RasInit(void) {
 
     // Configure sequencer 1 for RAS
     ADCSequenceConfigure(ADC0_BASE, 1, ADC_TRIGGER_PROCESSOR, 1);
-    ADCSequenceStepConfigure(ADC0_BASE, 1, 0, ADC_CTL_CH1 | ADC_CTL_IE | ADC_CTL_END);
+    ADCSequenceStepConfigure(ADC0_BASE, 1, 0, ADC_CTL_CH0 | ADC_CTL_IE | ADC_CTL_END);
 
     // Register and enable interrupt
     ADCIntRegister(ADC0_BASE, 1, RasISR);

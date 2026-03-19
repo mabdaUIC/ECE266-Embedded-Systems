@@ -92,3 +92,9 @@ void LaunchPadInit()
     // Initialize UART0
     UartInit();
 }
+
+// Add this to launchpad.c if missing
+void SysTick_Handler(void)
+{
+    EventTick();
+}

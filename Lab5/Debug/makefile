@@ -20,6 +20,10 @@ ORDERED_OBJS += \
 "../tm4c123gh6pm.cmd" \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
+<<<<<<< HEAD
+=======
+-l"C:/Users/conav/OneDrive - University of Illinois Chicago/Documents/UIC/Classes Spring 2026/ECE 266/LabGroupF3/Util/Debug/Util.lib" \
+>>>>>>> a84fa3336c2bcb2d3d96b4c53ae3efc1a299eea9
 -l"C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/ccs/Debug/driverlib.lib" \
 
 -include ../makefile.init

@@ -1,4 +1,5 @@
 /*
+<<<<<<< HEAD
  * homework7_main.c for homework 7
  * ECE 266, spring 2026
  * Created by Zhao Zhang
@@ -11,6 +12,66 @@
 //
 // Test max functions
 //
+=======
+ * homework7_main.c – Homework 7 test harness
+ * ECE 266, Spring 2026
+ *
+ * Modified to include LED blink and robust UART init.
+ * (Only homework7_asmfunc.asm needs to be submitted.)
+ */
+
+#include <homework7.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include "inc/hw_memmap.h"
+#include "driverlib/gpio.h"
+#include "driverlib/sysctl.h"
+#include "driverlib/systick.h"
+#include "launchpad.h"
+
+//============================================================================
+// SysTick support – required by Util.lib
+//============================================================================
+volatile uint32_t EventTick = 0;   // DO NOT remove – used by Util
+
+// DO NOT define SysTick_Handler – Util.lib already provides it.
+
+// Initialize SysTick for a 1 ms timebase
+void Clock_InitSysTick(void)
+{
+    // System clock is 16 MHz on the LaunchPad
+    SysTickPeriodSet(16000);    // 16 MHz / 16000 = 1000 Hz → 1 ms period
+    SysTickIntEnable();
+    SysTickEnable();
+}
+
+//============================================================================
+// LED blink test – confirms program is running even without UART
+//============================================================================
+void BlinkLED(int times)
+{
+    // Enable the GPIO port for the on‑board LED (Port F)
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
+    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOF)) {}
+
+    // Set PF1 (red), PF2 (blue), PF3 (green) as outputs
+    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
+
+    int i;
+    for (i = 0; i < times; i++) {
+        // Green on
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
+        SysCtlDelay(16000000 / 3 / 2);   // ~0.5 sec (16 MHz / 3 cycles per loop)
+        // Green off
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0);
+        SysCtlDelay(16000000 / 3 / 2);
+    }
+}
+
+//============================================================================
+// Test functions (identical to original)
+//============================================================================
+>>>>>>> a84fa3336c2bcb2d3d96b4c53ae3efc1a299eea9
 void TestUmax()
 {
     uprintf("\n\r*** Test umax functions ***\n\r");
@@ -23,10 +84,13 @@ void TestUmax()
     uprintf("umax_ce(0xFFFFFFFF, 1) = 0x%X\n\r", umax_ce(0xFFFFFFFF, 1));
 }
 
+<<<<<<< HEAD
 
 //
 // Test sign functions
 //
+=======
+>>>>>>> a84fa3336c2bcb2d3d96b4c53ae3efc1a299eea9
 void TestSign()
 {
     uprintf("\n\r*** Test sign functions ***\n\r");
@@ -39,9 +103,12 @@ void TestSign()
     uprintf("sign_ce(0) = %d\n\r", sign_ce(0));
 }
 
+<<<<<<< HEAD
 //
 // Test swap functions
 //
+=======
+>>>>>>> a84fa3336c2bcb2d3d96b4c53ae3efc1a299eea9
 void TestSwap()
 {
     unsigned short X[4];
@@ -103,17 +170,50 @@ void TestSwap()
             flag ? "swapped" : "not swapped");
 }
 
+<<<<<<< HEAD
 int main(void)
 {
     LaunchPadInit();
 
+=======
+//============================================================================
+// main
+//============================================================================
+int main(void)
+{
+    // Step 1: Provide timebase for Util.lib
+    Clock_InitSysTick();
+
+    // Step 2: Initialize Util (UART, buttons, etc.)
+    LaunchPadInit();
+
+    // Step 3: Blink LED to confirm program is running
+    BlinkLED(5);   // Green LED flashes 5 times
+
+    // Step 4: Send first UART message
+    uprintf("\n\r*** Homework 7 – output follows ***\n\r");
+
+    // Step 5: Run tests
+>>>>>>> a84fa3336c2bcb2d3d96b4c53ae3efc1a299eea9
     TestUmax();
     TestSign();
     TestSwap();
 
+<<<<<<< HEAD
     // Never exit
     while (true)
     {
     }
 }
 
+=======
+    while (true)
+    {
+        // Optionally blink slowly to indicate idle
+        // GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2); // blue on
+        // SysCtlDelay(16000000 / 3);   // 1 sec
+        // GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
+        // SysCtlDelay(16000000 / 3);
+    }
+}
+>>>>>>> a84fa3336c2bcb2d3d96b4c53ae3efc1a299eea9

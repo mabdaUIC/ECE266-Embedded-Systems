@@ -32,8 +32,6 @@ lab6_main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/timer.h
 lab6_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/assert.h
 lab6_main.obj: C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h
 lab6_main.obj: ../seg7.h
-lab6_main.obj: ../temp_sensor.h
-lab6_main.obj: ../ras.h
 
 ../lab6_main.c:
 
@@ -98,8 +96,4 @@ C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/assert.h:
 C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h:
 
 ../seg7.h:
-
-../temp_sensor.h:
-
-../ras.h:
 

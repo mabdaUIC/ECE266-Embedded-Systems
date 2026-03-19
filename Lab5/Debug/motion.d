@@ -17,7 +17,7 @@ motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_memmap.h
 motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_gpio.h
 motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/gpio.h
 motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/sysctl.h
-motion.obj: C:/Users/conav/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/launchpad.h
+motion.obj: C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/launchpad.h
 motion.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdio.h
 motion.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdarg.h
 motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_types.h
@@ -31,7 +31,7 @@ motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/uart.h
 motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/adc.h
 motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/timer.h
 motion.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/assert.h
-motion.obj: C:/Users/conav/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h
+motion.obj: C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h
 
 ../motion.c:
 
@@ -67,7 +67,7 @@ C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/gpio.h:
 
 C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/sysctl.h:
 
-C:/Users/conav/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/launchpad.h:
+C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/launchpad.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdio.h:
 
@@ -95,5 +95,5 @@ C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/timer.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/assert.h:
 
-C:/Users/conav/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h:
+C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h:
 

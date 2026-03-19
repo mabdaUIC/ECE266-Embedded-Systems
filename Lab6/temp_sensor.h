@@ -18,4 +18,4 @@ float TsDataRead();
 void TsEventRegister(Event *event);
 void TempSensorISR();
 
-#endif /* TEMP_SENSOR_H_ */
+#endif

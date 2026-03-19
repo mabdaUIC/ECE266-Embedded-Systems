@@ -1,12 +1,12 @@
 /*
- * homework7_main.c for homework 6
+ * homework6_main.c for homework 6
  * ECE 266, spring 2026
  * Created by Zhao Zhang
  */
 
 #include <stdio.h>
 #include "launchpad.h"
-#include "homework7.h"
+#include "homework6.h"
 
 void ClearArray(int Y[])
 {

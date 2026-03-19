@@ -13,25 +13,6 @@ motion.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/machi
 motion.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/machine/_stdint.h
 motion.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/sys/_stdint.h
 motion.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdbool.h
-motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_memmap.h
-motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_gpio.h
-motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/gpio.h
-motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/sysctl.h
-motion.obj: C:/Users/conav/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/launchpad.h
-motion.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdio.h
-motion.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdarg.h
-motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_types.h
-motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_ints.h
-motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_adc.h
-motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_timer.h
-motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/pin_map.h
-motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/interrupt.h
-motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/systick.h
-motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/uart.h
-motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/adc.h
-motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/timer.h
-motion.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/assert.h
-motion.obj: C:/Users/conav/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h
 
 ../motion.c:
 
@@ -58,42 +39,4 @@ C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/machine/_stdint.h
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/sys/_stdint.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdbool.h:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_memmap.h:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_gpio.h:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/gpio.h:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/sysctl.h:
-
-C:/Users/conav/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/launchpad.h:
-
-C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdio.h:
-
-C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdarg.h:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_types.h:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_ints.h:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_adc.h:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_timer.h:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/pin_map.h:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/interrupt.h:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/systick.h:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/uart.h:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/adc.h:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/timer.h:
-
-C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/assert.h:
-
-C:/Users/conav/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h:
 

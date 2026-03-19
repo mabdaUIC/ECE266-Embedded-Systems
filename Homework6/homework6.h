@@ -1,11 +1,11 @@
 /*
- * homework7.h
+ * homework6.h
  * ECE 266, spring 2026, for homework 6
  * Created by Zhao Zhang
  */
 
-#ifndef HOMEWORK7_H_
-#define HOMEWORK7_H_
+#ifndef HOMEWORK6_H_
+#define HOMEWORK6_H_
 
 #include <stdint.h>
 
@@ -18,5 +18,5 @@ void Copy4ByRegOffset(int Y[], int X[]);
 // swap() function: Swap X[i] and Y[i]
 void Swap2(short X[], short Y[], int i);
 
-#endif /* HOMEWORK7_H_ */
+#endif /* HOMEWORK6_H_ */
 

@@ -8,6 +8,8 @@
 #include <stdio.h>
 #include "launchpad.h"
 #include "homework6.h"
+<<<<<<< HEAD
+=======
 
 // Very long delay to let UART transmit
 void longDelay(void) {
@@ -66,6 +68,7 @@ void printSwapLine(const char* label, short x[], short y[]) {
     slowPrintShort(y[4]); slowPrint("}\n\r");
     longDelay(); longDelay();
 }
+>>>>>>> a84fa3336c2bcb2d3d96b4c53ae3efc1a299eea9
 
 void ClearArray(int Y[])
 {

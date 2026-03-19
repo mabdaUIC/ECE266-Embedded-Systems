@@ -13,11 +13,6 @@ buzzer.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/machi
 buzzer.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/machine/_stdint.h
 buzzer.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/sys/_stdint.h
 buzzer.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdbool.h
-buzzer.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_memmap.h
-buzzer.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_gpio.h
-buzzer.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/pin_map.h
-buzzer.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/sysctl.h
-buzzer.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/gpio.h
 
 ../buzzer.c:
 
@@ -44,14 +39,4 @@ C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/machine/_stdint.h
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/sys/_stdint.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdbool.h:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_memmap.h:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_gpio.h:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/pin_map.h:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/sysctl.h:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/gpio.h:
 

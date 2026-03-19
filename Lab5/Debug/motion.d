@@ -13,6 +13,8 @@ motion.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/machi
 motion.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/machine/_stdint.h
 motion.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/sys/_stdint.h
 motion.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdbool.h
+<<<<<<< HEAD
+=======
 motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_memmap.h
 motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_gpio.h
 motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/gpio.h
@@ -32,6 +34,7 @@ motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/adc.h
 motion.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/timer.h
 motion.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/assert.h
 motion.obj: C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h
+>>>>>>> a84fa3336c2bcb2d3d96b4c53ae3efc1a299eea9
 
 ../motion.c:
 
@@ -59,6 +62,8 @@ C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/sys/_stdint.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdbool.h:
 
+<<<<<<< HEAD
+=======
 C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_memmap.h:
 
 C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_gpio.h:
@@ -97,3 +102,4 @@ C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/assert.h:
 
 C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h:
 
+>>>>>>> a84fa3336c2bcb2d3d96b4c53ae3efc1a299eea9

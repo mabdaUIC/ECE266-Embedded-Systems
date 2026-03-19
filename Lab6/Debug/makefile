@@ -13,16 +13,13 @@ ORDERED_OBJS += \
 "./lab6_main.obj" \
 "./ras.obj" \
 "./ras_asm.obj" \
-"./seg7digit.obj" \
-"./seg7raw.obj" \
 "./temp_sensor.obj" \
 "./temp_sensor_asm.obj" \
 "./tm4c123gh6pm_startup_ccs.obj" \
 "../tm4c123gh6pm.cmd" \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
--l"C:/Users/conav/OneDrive - University of Illinois Chicago/Documents/UIC/Classes Spring 2026/ECE 266/LabGroupF3/Util/Debug/Util.lib" \
--l"C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/ccs/Debug/driverlib.lib" \
+-l"C:/ti/TivaWare_C_Series-2.2.0.295 (1)/TivaWare_C_Series-2.2.0.295/driverlib/rvmdk/driverlib.lib" \
 
 -include ../makefile.init
 
@@ -143,15 +140,15 @@ all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 Lab6.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: Arm Linker'
-	"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"Lab6.map" --heap_size=0 --stack_size=512 -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/lib" -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="Lab6_linkInfo.xml" --rom_model -o "Lab6.out" $(ORDERED_OBJS)
+	"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"Lab6.map" --heap_size=2058 --stack_size=2058 -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/lib" -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="Lab6_linkInfo.xml" --rom_model -o "Lab6.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "lab6_main.obj" "ras.obj" "ras_asm.obj" "seg7digit.obj" "seg7raw.obj" "temp_sensor.obj" "temp_sensor_asm.obj" "tm4c123gh6pm_startup_ccs.obj" 
-	-$(RM) "lab6_main.d" "ras.d" "seg7digit.d" "seg7raw.d" "temp_sensor.d" "tm4c123gh6pm_startup_ccs.d" 
+	-$(RM) "lab6_main.obj" "ras.obj" "ras_asm.obj" "temp_sensor.obj" "temp_sensor_asm.obj" "tm4c123gh6pm_startup_ccs.obj" 
+	-$(RM) "lab6_main.d" "ras.d" "temp_sensor.d" "tm4c123gh6pm_startup_ccs.d" 
 	-$(RM) "ras_asm.d" "temp_sensor_asm.d" 
 	-@echo 'Finished clean'
 	-@echo ' '

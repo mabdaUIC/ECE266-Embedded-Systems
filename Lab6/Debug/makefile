@@ -13,13 +13,16 @@ ORDERED_OBJS += \
 "./lab6_main.obj" \
 "./ras.obj" \
 "./ras_asm.obj" \
+"./seg7digit.obj" \
+"./seg7raw.obj" \
 "./temp_sensor.obj" \
 "./temp_sensor_asm.obj" \
 "./tm4c123gh6pm_startup_ccs.obj" \
 "../tm4c123gh6pm.cmd" \
 $(GEN_CMDS__FLAG) \
+-l"C:/Users/conav/OneDrive - University of Illinois Chicago/Documents/UIC/Classes Spring 2026/ECE 266/LabGroupF3/Util/Debug/Util.lib" \
+-l"C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/ccs/Debug/driverlib.lib" \
 -llibc.a \
--l"C:/ti/TivaWare_C_Series-2.2.0.295 (1)/TivaWare_C_Series-2.2.0.295/driverlib/rvmdk/driverlib.lib" \
 
 -include ../makefile.init
 
@@ -147,8 +150,8 @@ Lab6.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "lab6_main.obj" "ras.obj" "ras_asm.obj" "temp_sensor.obj" "temp_sensor_asm.obj" "tm4c123gh6pm_startup_ccs.obj" 
-	-$(RM) "lab6_main.d" "ras.d" "temp_sensor.d" "tm4c123gh6pm_startup_ccs.d" 
+	-$(RM) "lab6_main.obj" "ras.obj" "ras_asm.obj" "seg7digit.obj" "seg7raw.obj" "temp_sensor.obj" "temp_sensor_asm.obj" "tm4c123gh6pm_startup_ccs.obj" 
+	-$(RM) "lab6_main.d" "ras.d" "seg7digit.d" "seg7raw.d" "temp_sensor.d" "tm4c123gh6pm_startup_ccs.d" 
 	-$(RM) "ras_asm.d" "temp_sensor_asm.d" 
 	-@echo 'Finished clean'
 	-@echo ' '

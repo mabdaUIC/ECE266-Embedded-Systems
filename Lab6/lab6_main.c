@@ -1,6 +1,6 @@
 /*
  * lab6_main.c – Interrupt‑driven version with direct ISR flag handling
- * RAS on J5 (PE2/AIN1), 7‑seg on J10 (PA6, PA7)
+ * RAS on J5 (PE2/AIN1), 7 seg on J10 (PA6, PA7)
  */
 
 #include <stdint.h>
@@ -22,7 +22,7 @@ volatile uint32_t g_ras_raw = 0;
 volatile bool    g_temp_ready = false;
 volatile bool    g_ras_ready = false;
 
-// 7‑segment encoding table (index 10 = blank)
+// 7 segment encoding table (index 10 = blank)
 static const uint8_t seg7_codes[] = {
     0b00111111, 0b00000110, 0b01011011, 0b01001111, 0b01100110,
     0b01101101, 0b01111101, 0b00000111, 0b01111111, 0b01101111,
@@ -99,7 +99,7 @@ int main(void) {
     uint8_t test_codes[4] = {0b00000110, 0b01011011, 0b01001111, 0b01100110};
     uprintf("Display test pattern 1234...\r\n");
     Seg7RawUpdate(test_codes);
-    SysCtlDelay(sysClock * 2);
+    SysCtlDelay(sysClock * .5);
 
     TsInit();
     RasInit();
@@ -110,7 +110,7 @@ int main(void) {
 
     while (1) {
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
-        SysCtlDelay(sysClock / 500);
+        SysCtlDelay(sysClock / 250);
         GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
 
         TsTriggerReading();
@@ -138,6 +138,6 @@ int main(void) {
         else DisplayRAS(current_angle);
         show_temperature = !show_temperature;
 
-        SysCtlDelay(sysClock * 2);
+        SysCtlDelay(sysClock * 1);
     }
 }

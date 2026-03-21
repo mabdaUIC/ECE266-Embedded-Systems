@@ -38,7 +38,7 @@ TempSensorISR
         ; In C: temp_sensor.raw_data = *(uint32_t*)(ADC0_BASE + ADC_O_SSFIFO0)
         LDR     r0, _ADC0_BASE				; load ADC0 base address
         LDR		r1, _temp_sensor			; load temp_sensor address
-        LDR 	r2, [r0, #ADC_O_SSFIFO0]	; load ADC reading from ADC0 FIFO0 register
+        LDR 	r2, [r0, #ADC_0_SSFIFO0]	; load ADC reading from ADC0 FIFO0 register
 		STR		r2, [r1, #4] 				; store to temp_sensor.raw_data
 
         ; Set the flag for new data ready

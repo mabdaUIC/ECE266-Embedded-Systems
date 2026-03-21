@@ -1,6 +1,6 @@
 /*
- * lab6_main.c – Interrupt‑driven version with direct ISR flag handling
- * RAS on J5 (PE2/AIN1), 7‑seg on J10 (PA6, PA7)
+ * lab6_main.c Interrupt driven version with direct ISR flag handling
+ * RAS on J5 (PE2/AIN1), 7 seg on J10 (PA6, PA7)
  */
 
 #include <stdint.h>

@@ -16,7 +16,13 @@ void RasInit(void) {
     while(!SysCtlPeripheralReady(SYSCTL_PERIPH_ADC0));
 
     ADCSequenceConfigure(ADC0_BASE, 1, ADC_TRIGGER_PROCESSOR, 1);
+<<<<<<< HEAD
+    ADCSequenceStepConfigure(ADC0_BASE, 1, 0, ADC_CTL_CH0 | ADC_CTL_IE | ADC_CTL_END);
+
+    // Register and enable interrupt
+=======
     ADCSequenceStepConfigure(ADC0_BASE, 1, 0, ADC_CTL_CH7 | ADC_CTL_IE | ADC_CTL_END);
+>>>>>>> 50135634314b86c569dd86edaeacc0ac3740f9b7
     ADCIntRegister(ADC0_BASE, 1, RasISR);
     ADCIntEnable(ADC0_BASE, 1);
     ADCSequenceEnable(ADC0_BASE, 1);

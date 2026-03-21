@@ -4,7 +4,11 @@
         .ref    ADCSequenceDataGet
         .ref    ADCIntClear
 
+<<<<<<< HEAD
+_ADC0_BASE      .field  0x40038000        ; ADC0 base address
+=======
 _ADC0_BASE      .field  0x40038000
+>>>>>>> 50135634314b86c569dd86edaeacc0ac3740f9b7
 _g_ras_raw      .field  g_ras_raw
 _g_ras_ready    .field  g_ras_ready
 

@@ -1,9 +1,5 @@
 /*
- * Starter code for ECE 266 Lab 7, Sound Player (PWM), spring 2026
- *
- * pwmled.c: PWM LED functions
- *
- * Created by Zhao Zhang
+ * pwm_buzzer.h – Low level PWM control for the buzzer
  */
 
 #ifndef PWM_BUZZER_H_
@@ -18,14 +14,10 @@
 #include <driverlib/pin_map.h>
 #include <driverlib/timer.h>
 
-/*
- * Initialize the timer PWM functions connected to the three sub-LEDs.
- */
-void PwmBuzzerInit();
+// Initialize the buzzer PWM hardware (timer and GPIO)
+void PwmBuzzerInit(void);
 
-/*
- * Set the LED parameters for the three sub-LEDs
- */
+// Set the PWM period and pulse width (in clock cycles)
 void PwmBuzzerSet(uint32_t pulsePeriod, uint32_t pulseWidth);
 
-#endif /* PWDBUZZER_H_ */
+#endif /* PWM_BUZZER_H_ */

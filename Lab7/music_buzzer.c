@@ -27,9 +27,9 @@ static const uint32_t note_periods[NUM_PITCH] = {
 
 // Duty cycles for the three volume levels (fraction of period)
 static const float volume_levels[NUM_VOLUME_LEVEL] = {
-    0.02f,   // low   – 2% duty cycle (quiet)
-    0.10f,   // medium – 10% duty cycle
-    0.50f    // high  – 50% duty cycle (loud)
+    0.01f,   // low   – 2% duty cycle (quiet)
+    0.05f,   // medium – 10% duty cycle
+    0.25f    // high  – 50% duty cycle (loud)
 };
 
 /*

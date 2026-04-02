@@ -14,7 +14,7 @@ lab6_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/sy
 lab6_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdbool.h
 lab6_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdio.h
 lab6_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdarg.h
-lab6_main.obj: C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/launchpad.h
+lab6_main.obj: C:/School/Spring2026/ECE266/LabGroupF3/Util/launchpad.h
 lab6_main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_types.h
 lab6_main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_memmap.h
 lab6_main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_ints.h
@@ -30,7 +30,7 @@ lab6_main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/uart.h
 lab6_main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/adc.h
 lab6_main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/timer.h
 lab6_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/assert.h
-lab6_main.obj: C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h
+lab6_main.obj: C:/School/Spring2026/ECE266/LabGroupF3/Util/event.h
 lab6_main.obj: ../seg7.h
 lab6_main.obj: ../temp_sensor.h
 lab6_main.obj: ../ras.h
@@ -63,7 +63,7 @@ C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdio.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdarg.h:
 
-C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/launchpad.h:
+C:/School/Spring2026/ECE266/LabGroupF3/Util/launchpad.h:
 
 C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_types.h:
 
@@ -95,7 +95,7 @@ C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/timer.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/assert.h:
 
-C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h:
+C:/School/Spring2026/ECE266/LabGroupF3/Util/event.h:
 
 ../seg7.h:
 

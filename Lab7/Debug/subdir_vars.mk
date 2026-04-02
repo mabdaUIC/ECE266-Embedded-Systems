@@ -10,37 +10,49 @@ CMD_SRCS += \
 
 C_SRCS += \
 ../lab7_main.c \
+../music_buzzer.c \
 ../music_led.c \
+../pwm_buzzer.c \
 ../pwm_led.c \
 ../tm4c123gh6pm_startup_ccs.c 
 
 C_DEPS += \
 ./lab7_main.d \
+./music_buzzer.d \
 ./music_led.d \
+./pwm_buzzer.d \
 ./pwm_led.d \
 ./tm4c123gh6pm_startup_ccs.d 
 
 OBJS += \
 ./lab7_main.obj \
+./music_buzzer.obj \
 ./music_led.obj \
+./pwm_buzzer.obj \
 ./pwm_led.obj \
 ./tm4c123gh6pm_startup_ccs.obj 
 
 OBJS__QUOTED += \
 "lab7_main.obj" \
+"music_buzzer.obj" \
 "music_led.obj" \
+"pwm_buzzer.obj" \
 "pwm_led.obj" \
 "tm4c123gh6pm_startup_ccs.obj" 
 
 C_DEPS__QUOTED += \
 "lab7_main.d" \
+"music_buzzer.d" \
 "music_led.d" \
+"pwm_buzzer.d" \
 "pwm_led.d" \
 "tm4c123gh6pm_startup_ccs.d" 
 
 C_SRCS__QUOTED += \
 "../lab7_main.c" \
+"../music_buzzer.c" \
 "../music_led.c" \
+"../pwm_buzzer.c" \
 "../pwm_led.c" \
 "../tm4c123gh6pm_startup_ccs.c" 
 

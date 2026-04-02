@@ -9,7 +9,7 @@
  */
 
 // REVISE AS NEEDED
-#include <pwm_led.h>
+#include <pwm_buzzer.h>
 #include "launchpad.h"
 #include "music.h"
 
@@ -64,14 +64,14 @@ void PlaySound(Event *event)
 
     if (!sys.buzzer_on) {
         // Turn on the buzzer with the current PWM setting
-        MusicSetLed(sys.pitch, sys.volume);
+        MusicSetBuzzer(sys.pitch, sys.volume);
         sys.buzzer_on = true;
         delay = 500;
     }
     else
     {
         // Turn off the buzzer
-        MusicTurnOffLed();
+        MusicTurnOffBuzzer();
         sys.buzzer_on = false;
         delay = 1000;
     }
@@ -90,7 +90,7 @@ void main(void)
 {
     // Initialize the LannchPad, PWM function for LED, and PMW function for buzzer
     LaunchPadInit();
-    MusicInitLed();
+    MusicInitBuzzer();
 
     // Initialize the events
     EventInit(&play_sound_event, PlaySound);

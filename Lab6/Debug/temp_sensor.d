@@ -1,6 +1,7 @@
 # FIXED
 
 temp_sensor.obj: ../temp_sensor.c
+temp_sensor.obj: ../temp_sensor.h
 temp_sensor.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdint.h
 temp_sensor.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/_ti_config.h
 temp_sensor.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/linkage.h
@@ -12,13 +13,10 @@ temp_sensor.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/
 temp_sensor.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/machine/_stdint.h
 temp_sensor.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/sys/_stdint.h
 temp_sensor.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdbool.h
-temp_sensor.obj: ../temp_sensor.h
-temp_sensor.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_memmap.h
-temp_sensor.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/adc.h
-temp_sensor.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/sysctl.h
-temp_sensor.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/interrupt.h
 
 ../temp_sensor.c:
+
+../temp_sensor.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdint.h:
 
@@ -41,14 +39,4 @@ C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/machine/_stdint.h
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/sys/_stdint.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdbool.h:
-
-../temp_sensor.h:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_memmap.h:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/adc.h:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/sysctl.h:
-
-C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/interrupt.h:
 

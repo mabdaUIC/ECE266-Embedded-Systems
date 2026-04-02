@@ -1,7 +1,7 @@
 # FIXED
 
 lab7_main.obj: ../lab7_main.c
-lab7_main.obj: C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Lab7/pwm_led.h
+lab7_main.obj: C:/School/Spring2026/ECE266/LabGroupF3/Lab7/pwm_buzzer.h
 lab7_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdbool.h
 lab7_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/_ti_config.h
 lab7_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/linkage.h
@@ -19,7 +19,7 @@ lab7_main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/sysctl.h
 lab7_main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/gpio.h
 lab7_main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/pin_map.h
 lab7_main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/timer.h
-lab7_main.obj: C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/launchpad.h
+lab7_main.obj: C:/School/Spring2026/ECE266/LabGroupF3/Util/launchpad.h
 lab7_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdio.h
 lab7_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdarg.h
 lab7_main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_types.h
@@ -31,12 +31,12 @@ lab7_main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/systick.h
 lab7_main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/uart.h
 lab7_main.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/adc.h
 lab7_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/assert.h
-lab7_main.obj: C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h
+lab7_main.obj: C:/School/Spring2026/ECE266/LabGroupF3/Util/event.h
 lab7_main.obj: ../music.h
 
 ../lab7_main.c:
 
-C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Lab7/pwm_led.h:
+C:/School/Spring2026/ECE266/LabGroupF3/Lab7/pwm_buzzer.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdbool.h:
 
@@ -72,7 +72,7 @@ C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/pin_map.h:
 
 C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/timer.h:
 
-C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/launchpad.h:
+C:/School/Spring2026/ECE266/LabGroupF3/Util/launchpad.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdio.h:
 
@@ -96,7 +96,7 @@ C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/adc.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/assert.h:
 
-C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h:
+C:/School/Spring2026/ECE266/LabGroupF3/Util/event.h:
 
 ../music.h:
 

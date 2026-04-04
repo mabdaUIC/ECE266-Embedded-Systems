@@ -7,7 +7,7 @@
 
 #include "pwm_buzzer.h"
 
-// Correct hardware definitions for buzzer on PC5 (J17)
+// Correct hardware definitions for buzzer on PC5 (J1p7)
 #define BUZZER_TIMER_BASE   WTIMER0_BASE
 #define BUZZER_TIMER        TIMER_B              // Changed to TIMER_B
 #define BUZZER_GPIO_BASE    GPIO_PORTC_BASE

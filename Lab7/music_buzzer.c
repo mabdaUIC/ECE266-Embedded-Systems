@@ -43,9 +43,9 @@ typedef struct
 
 static const float volume_levels[NUM_VOLUME_LEVEL] =
 {
-   0.02f,              // level 0 quiet
-   0.10f,              // level 1 medium
-   0.50f              // level 2 loud
+   0.01f,              // level 0 quiet
+   0.05f,              // level 1 medium
+   0.25f              // level 2 loud
 };
 
 /*

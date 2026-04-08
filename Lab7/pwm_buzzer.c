@@ -22,8 +22,8 @@ void PwmBuzzerInit()
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOC);
 
     // Connect pins to those timers
-    GPIOPinTypeTimer(GPIO_PORTC_BASE, GPIO_PIN_4);
-    GPIOPinConfigure(GPIO_PC4_WT0CCP0);
+    GPIOPinTypeTimer(GPIO_PORTC_BASE, GPIO_PIN_5);
+    GPIOPinConfigure(GPIO_PC5_WT0CCP1);
 
     // Select PWM for Timer 0 sub-Timer B, and Timer 1 sub-Timers A & B
     TimerConfigure(WTIMER0_BASE, (TIMER_CFG_SPLIT_PAIR | TIMER_CFG_A_PWM));

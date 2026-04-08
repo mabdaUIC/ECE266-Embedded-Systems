@@ -10,6 +10,7 @@
 
 // REVISE AS NEEDED
 #include <pwm_buzzer.h>
+#include <pwm_led.h>
 #include "launchpad.h"
 #include "music.h"
 

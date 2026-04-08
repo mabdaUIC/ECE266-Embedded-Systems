@@ -1,7 +1,7 @@
 # FIXED
 
 pwm_led.obj: ../pwm_led.c
-pwm_led.obj: C:/School/Spring2026/ECE266/LabGroupF3/Lab7/pwm_led.h
+pwm_led.obj: C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Lab7/pwm_led.h
 pwm_led.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdbool.h
 pwm_led.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/_ti_config.h
 pwm_led.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/linkage.h
@@ -22,7 +22,7 @@ pwm_led.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/timer.h
 
 ../pwm_led.c:
 
-C:/School/Spring2026/ECE266/LabGroupF3/Lab7/pwm_led.h:
+C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Lab7/pwm_led.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdbool.h:
 

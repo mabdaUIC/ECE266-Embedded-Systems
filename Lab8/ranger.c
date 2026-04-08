@@ -110,6 +110,9 @@ bool RangerDataReady()
  */
 void RangerISR()
 {
+
+    //uint32_t current_time = TimerValueGet(WTIMER2_BASE, TIMER_B); //read the timer value
+
     switch (ranger.state)
     {
     case EXPECT_START_EVENT_1:
@@ -117,15 +120,23 @@ void RangerISR()
         break;
 
     case EXPECT_START_EVENT_2:
+        TimerDisable(WTIMER2_BASE, TIMER_B);
+        TimerLoadSet(WTIMER2_BASE, TIMER_B, 0xFFFFFFFF); //set max load value
+        TimerConfigure(WTIMER2_BASE, (TIMER_CFG_SPLIT_PAIR | TIMER_CFG_B_CAP_TIME));
         ranger.state = EXPECT_DATA_EVENT_1;
         break;
 
     case EXPECT_DATA_EVENT_1:
+        TimerEnable(WTIMER2_BASE, TIMER_B);
+        ranger.pulse_start = TimerValueGet(WTIMER2_BASE, TIMER_B); //record the start of the echo pulse
         ranger.state = EXPECT_DATA_EVENT_2;
         break;
 
     case EXPECT_DATA_EVENT_2:
-        ranger.state = IDLE;
+        ranger.pulse_end = current_time; //record the end of the echo pulse
+        ranger.pulse_width = (ranger.pulse_start - ranger.pulse_end); //calculate width
+        ranger.new_data_ready = true; //signal to main that data is ready
+        ranger.state = EXPECT_START_EVENT_1; //ready for next
         break;
     }
 

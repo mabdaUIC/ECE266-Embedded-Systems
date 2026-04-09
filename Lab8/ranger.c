@@ -30,6 +30,11 @@ typedef struct {
         EXPECT_DATA_EVENT_2     // expecting the falling edge of the data pulse
     } state;
     bool new_data_ready;
+
+    uint32_t pulse_start; //capture event 3
+    uint32_t pulse_end; //capture event 4
+    uint32_t pulse_width; //pulse start - pulse end
+
 } RangerState;
 
 volatile RangerState ranger;
@@ -54,13 +59,26 @@ void RangerInit()
     GPIOPinTypeTimer(GPIO_PORTD_BASE, GPIO_PIN_1);
     GPIOPinConfigure(GPIO_PD1_WT2CCP1);
 
+    TimerConfigure(WTIMER2_BASE, TIMER_CFG_SPLIT_PAIR | TIMER_CFG_B_CAP_TIME);
+
     // Count both edges as event
     TimerControlLevel(WTIMER2_BASE, TIMER_B, true);
     TimerControlEvent(WTIMER2_BASE, TIMER_B, TIMER_EVENT_BOTH_EDGES);
 
+    TimerLoadSet(WTIMER2_BASE, TIMER_B, 0xFFFFFFFF);
+    TimerEnable(WTIMER2_BASE, TIMER_B);
+
     // Register an ISR to deal with the timeout event
     TimerIntRegister(WTIMER2_BASE, TIMER_B, RangerISR);
     TimerIntEnable(WTIMER2_BASE, TIMER_CAPB_EVENT);
+
+    IntMasterEnable();
+}
+
+//add this function
+uint32_t RangerGetData()
+{
+    return ranger.pulse_width;
 }
 
 /*
@@ -81,9 +99,21 @@ void RangerTriggerReading()
     TimerConfigure(WTIMER2_BASE, TIMER_CFG_SPLIT_PAIR | TIMER_CFG_B_PWM);
     TimerLoadSet(WTIMER2_BASE, TIMER_B, 1000);
     TimerMatchSet(WTIMER2_BASE, TIMER_B, 500);
-    TimerIntClear(WTIMER2_BASE, TIMER_CAPB_EVENT);
+    //TimerIntClear(WTIMER2_BASE, TIMER_CAPB_EVENT);
 
     // Enable the timer, and start PWM waveform
+    TimerEnable(WTIMER2_BASE, TIMER_B);
+
+    SysCtlDelay(50 * (50000000 / 3 / 1000000)); //wait briefly
+
+    TimerDisable(WTIMER2_BASE, TIMER_B);
+
+    //back to capture mode
+    TimerConfigure(WTIMER2_BASE, TIMER_CFG_SPLIT_PAIR | TIMER_CFG_B_CAP_TIME);
+    TimerControlEvent(WTIMER2_BASE, TIMER_B, TIMER_EVENT_BOTH_EDGES);
+
+    //clear any interrupts
+    TimerIntClear(WTIMER2_BASE, TIMER_CAPB_EVENT);
     TimerEnable(WTIMER2_BASE, TIMER_B);
 }
 
@@ -111,7 +141,7 @@ bool RangerDataReady()
 void RangerISR()
 {
 
-    //uint32_t current_time = TimerValueGet(WTIMER2_BASE, TIMER_B); //read the timer value
+    uint32_t current_time = TimerValueGet(WTIMER2_BASE, TIMER_B); //read the timer value
 
     switch (ranger.state)
     {

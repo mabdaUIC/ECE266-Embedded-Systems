@@ -25,26 +25,11 @@ static const uint32_t note_periods[NUM_PITCH] = {
     101239      // B4 (493.88 Hz)
 };
 
-<<<<<<< HEAD
-// LED brightness settings defined as PWM period and PWM pulse width
-typedef struct
-{
-    int period;
-    int pulse_width;
-} LEDBrightnessSetting;
-
-static const float volume_levels[NUM_VOLUME_LEVEL] =
-{
-   0.01f,              // level 0 quiet
-   0.05f,              // level 1 medium
-   0.25f              // level 2 loud
-=======
 // Duty cycles for the three volume levels (fraction of period)
 static const float volume_levels[NUM_VOLUME_LEVEL] = {
-    0.01f,   // low   – 2% duty cycle (quiet)
-    0.05f,   // medium – 10% duty cycle
-    0.25f    // high  – 50% duty cycle (loud)
->>>>>>> 8ce9a1fe9e374a40684e762e4bb625c8f6c024cf
+    0.02f,   // low   – 2% duty cycle (quiet)
+    0.10f,   // medium – 10% duty cycle
+    0.50f    // high  – 50% duty cycle (loud)
 };
 
 /*

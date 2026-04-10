@@ -18,7 +18,7 @@ seg7raw.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/sysctl.h
 seg7raw.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_memmap.h
 seg7raw.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/gpio.h
 seg7raw.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/pin_map.h
-seg7raw.obj: C:/School/Spring2026/ECE266/LabGroupF3/Util/launchpad.h
+seg7raw.obj: C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/launchpad.h
 seg7raw.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_types.h
 seg7raw.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_ints.h
 seg7raw.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_gpio.h
@@ -30,7 +30,7 @@ seg7raw.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/uart.h
 seg7raw.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/adc.h
 seg7raw.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/timer.h
 seg7raw.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/assert.h
-seg7raw.obj: C:/School/Spring2026/ECE266/LabGroupF3/Util/event.h
+seg7raw.obj: C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h
 seg7raw.obj: ../seg7.h
 
 ../seg7raw.c:
@@ -69,7 +69,7 @@ C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/gpio.h:
 
 C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/pin_map.h:
 
-C:/School/Spring2026/ECE266/LabGroupF3/Util/launchpad.h:
+C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/launchpad.h:
 
 C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_types.h:
 
@@ -93,7 +93,7 @@ C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/timer.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/assert.h:
 
-C:/School/Spring2026/ECE266/LabGroupF3/Util/event.h:
+C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h:
 
 ../seg7.h:
 

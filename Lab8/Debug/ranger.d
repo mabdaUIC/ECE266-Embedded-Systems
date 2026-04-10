@@ -19,7 +19,7 @@ ranger.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/sysctl.h
 ranger.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/gpio.h
 ranger.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/pin_map.h
 ranger.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/timer.h
-ranger.obj: C:/School/Spring2026/ECE266/LabGroupF3/Util/launchpad.h
+ranger.obj: C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/launchpad.h
 ranger.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdio.h
 ranger.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdarg.h
 ranger.obj: C:/ti/TivaWare_C_Series-2.2.0.295/inc/hw_types.h
@@ -31,7 +31,7 @@ ranger.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/systick.h
 ranger.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/uart.h
 ranger.obj: C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/adc.h
 ranger.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/assert.h
-ranger.obj: C:/School/Spring2026/ECE266/LabGroupF3/Util/event.h
+ranger.obj: C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h
 
 ../ranger.c:
 
@@ -71,7 +71,7 @@ C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/pin_map.h:
 
 C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/timer.h:
 
-C:/School/Spring2026/ECE266/LabGroupF3/Util/launchpad.h:
+C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/launchpad.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdio.h:
 
@@ -95,5 +95,5 @@ C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/adc.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/assert.h:
 
-C:/School/Spring2026/ECE266/LabGroupF3/Util/event.h:
+C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h:
 

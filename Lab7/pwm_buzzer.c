@@ -7,7 +7,7 @@
 
 #include "pwm_buzzer.h"
 
-// Correct hardware definitions for buzzer on PC5 (J1p7)
+// Correct hardware definitions for buzzer on PC5 (J17)
 #define BUZZER_TIMER_BASE   WTIMER0_BASE
 #define BUZZER_TIMER        TIMER_B              // Changed to TIMER_B
 #define BUZZER_GPIO_BASE    GPIO_PORTC_BASE
@@ -20,15 +20,9 @@ void PwmBuzzerInit(void)
     SysCtlPeripheralEnable(SYSCTL_PERIPH_WTIMER0);
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOC);
 
-<<<<<<< HEAD
-    // Connect pins to those timers
-    GPIOPinTypeTimer(GPIO_PORTC_BASE, GPIO_PIN_5);
-    GPIOPinConfigure(GPIO_PC5_WT0CCP1);
-=======
     // Configure PC5 as timer (PWM) output
     GPIOPinTypeTimer(BUZZER_GPIO_BASE, BUZZER_GPIO_PIN);
     GPIOPinConfigure(BUZZER_GPIO_CFG);
->>>>>>> 8ce9a1fe9e374a40684e762e4bb625c8f6c024cf
 
     // Split the 32/64 bit timer into two sub timers, sub timer B in PWM mode
     TimerConfigure(BUZZER_TIMER_BASE, TIMER_CFG_SPLIT_PAIR | TIMER_CFG_B_PWM);

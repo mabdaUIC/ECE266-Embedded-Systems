@@ -10,7 +10,6 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
-"./clockupdate.obj" \
 "./lab8_main.obj" \
 "./ranger.obj" \
 "./seg7digit.obj" \
@@ -19,7 +18,7 @@ ORDERED_OBJS += \
 "../tm4c123gh6pm.cmd" \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
--l"C:/School/Spring2026/ECE266/LabGroupF3/Util/Debug/Util.lib" \
+-l"C:/Users/conav/OneDrive - University of Illinois Chicago/Documents/UIC/Classes Spring 2026/ECE 266/LabGroupF3/Util/Debug/Util.lib" \
 -l"C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/ccs/Debug/driverlib.lib" \
 
 -include ../makefile.init
@@ -148,9 +147,8 @@ Lab8.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "clockupdate.obj" "lab8_main.obj" "ranger.obj" "seg7digit.obj" "seg7raw.obj" "tm4c123gh6pm_startup_ccs.obj" 
+	-$(RM) "lab8_main.obj" "ranger.obj" "seg7digit.obj" "seg7raw.obj" "tm4c123gh6pm_startup_ccs.obj" 
 	-$(RM) "lab8_main.d" "ranger.d" "seg7digit.d" "seg7raw.d" "tm4c123gh6pm_startup_ccs.d" 
-	-$(RM) "clockupdate.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

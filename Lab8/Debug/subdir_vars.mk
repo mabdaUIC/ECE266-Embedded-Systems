@@ -8,9 +8,6 @@ SHELL = cmd.exe
 CMD_SRCS += \
 ../tm4c123gh6pm.cmd 
 
-ASM_SRCS += \
-../clockupdate.asm 
-
 C_SRCS += \
 ../lab8_main.c \
 ../ranger.c \
@@ -26,18 +23,13 @@ C_DEPS += \
 ./tm4c123gh6pm_startup_ccs.d 
 
 OBJS += \
-./clockupdate.obj \
 ./lab8_main.obj \
 ./ranger.obj \
 ./seg7digit.obj \
 ./seg7raw.obj \
 ./tm4c123gh6pm_startup_ccs.obj 
 
-ASM_DEPS += \
-./clockupdate.d 
-
 OBJS__QUOTED += \
-"clockupdate.obj" \
 "lab8_main.obj" \
 "ranger.obj" \
 "seg7digit.obj" \
@@ -50,12 +42,6 @@ C_DEPS__QUOTED += \
 "seg7digit.d" \
 "seg7raw.d" \
 "tm4c123gh6pm_startup_ccs.d" 
-
-ASM_DEPS__QUOTED += \
-"clockupdate.d" 
-
-ASM_SRCS__QUOTED += \
-"../clockupdate.asm" 
 
 C_SRCS__QUOTED += \
 "../lab8_main.c" \

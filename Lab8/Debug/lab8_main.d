@@ -36,6 +36,7 @@ lab8_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/as
 lab8_main.obj: C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Classes\ Spring\ 2026/ECE\ 266/LabGroupF3/Util/event.h
 lab8_main.obj: ../seg7.h
 lab8_main.obj: ../ranger.h
+lab8_main.obj: ../seg7.h
 
 ../lab8_main.c:
 
@@ -108,4 +109,6 @@ C:/Users/conav/OneDrive\ -\ University\ of\ Illinois\ Chicago/Documents/UIC/Clas
 ../seg7.h:
 
 ../ranger.h:
+
+../seg7.h:
 

@@ -28,6 +28,9 @@ void Seg7Init();
 // Update all 4 digits of the 7-segment displays
 void Seg7RawUpdate(uint8_t code[]);
 
+void Seg7DisplayInt(uint32_t value, bool colon_on);
+void Seg7DisplayTime(uint32_t left, uint32_t right, bool colon_on);
+
 // Update the 4-digit 7-segment display with digit numbers (not 7-segment display pattern)
 void Seg7Update(Seg7Display *seg7);
 

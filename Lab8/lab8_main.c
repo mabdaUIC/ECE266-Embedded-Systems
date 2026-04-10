@@ -17,8 +17,13 @@
 #include "launchpad.h"
 #include "seg7.h"
 #include "ranger.h"
+<<<<<<< HEAD
 #include <driverlib/sysctl.h>   // for SysCtlClockGet()
 #include <driverlib/gpio.h>     // for GPIOPinRead()
+=======
+//#include "launchpad.h"  // For PushButton functions
+#include "seg7.h"       // For Seg7 functions
+>>>>>>> 64996d691ee104fd62403af8b3d8faf7452d46e4
 
 /* --------------------------------------------------------------------
  * Global state
@@ -26,6 +31,7 @@
 typedef enum { Millimeter, Inch } DisplayMode;
 DisplayMode sys_mode = Millimeter;   // start in millimeter mode
 
+<<<<<<< HEAD
 /* Events */
 Event trigger_event;                 // triggers a new reading every 500 ms
 Event process_event;                // called when a measurement is ready
@@ -42,6 +48,45 @@ void TriggerRangerReading(Event *event)
 {
     RangerTriggerReading();
     EventSchedule(event, event->time + 500);   // every 500 ms
+=======
+
+// System state
+typedef enum {
+    Millimeter,
+    Inch
+} DisplayMode;
+
+DisplayMode g_mode = Millimeter;
+Event trigger_ranger_reading_event;
+
+/*******************************************
+ * Task 1: Trigger and read the ranger
+ ******************************************/
+
+// Trigger the ranger reading every 0.5 seconds
+void TriggerRangerReading(Event *event) {
+    RangerTriggerReading();
+    while(!RangerDataReady()); // Poll flag
+    uint32_t cycles = RangerGetData();
+
+    int buttons = PushButtonRead();
+
+    if (buttons == 1) {
+        g_mode = Millimeter;
+    } else if (buttons == 2) {
+        g_mode = Inch;
+    }
+
+    if (g_mode == Millimeter) {
+        uint32_t mm = (cycles * 3048) / 896470; // Precise conversion
+        Seg7DisplayInt(mm, false);              // No colon
+    } else {
+        uint32_t total_inches = (cycles * 12) / 89647;
+        Seg7DisplayTime(total_inches / 12, total_inches % 12, true); // Colon on
+    }
+
+    EventSchedule(event, event->time + 500); // 0.5s interval
+>>>>>>> 64996d691ee104fd62403af8b3d8faf7452d46e4
 }
 
 /* --------------------------------------------------------------------
@@ -50,8 +95,15 @@ void TriggerRangerReading(Event *event)
  * -------------------------------------------------------------------- */
 void ProcessMeasurement(Event *event)
 {
+<<<<<<< HEAD
     if (!RangerDataReady())
         return;
+=======
+    // Initialize the LaunchPad and peripherals
+    LaunchPadInit();
+    RangerInit();
+    Seg7Init();
+>>>>>>> 64996d691ee104fd62403af8b3d8faf7452d46e4
 
     uint32_t cycles = RangerGetData();
 

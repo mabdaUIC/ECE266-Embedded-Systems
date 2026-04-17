@@ -26,19 +26,10 @@ typedef struct {
         EXPECT_DATA_EVENT_1,        // waiting for rising edge of echo pulse
         EXPECT_DATA_EVENT_2         // waiting for falling edge of echo pulse
     } state;
-<<<<<<< HEAD
     bool new_data_ready;            // flag for polled operation
     uint32_t rising_time;           // timer value at rising edge of echo
     uint32_t falling_time;          // timer value at falling edge of echo
     uint32_t pulse_width;           // difference (falling - rising) in clock cycles
-=======
-    bool new_data_ready;
-
-    uint32_t pulse_start; //capture event 3
-    uint32_t pulse_end; //capture event 4
-    uint32_t pulse_width; //pulse start - pulse end
-
->>>>>>> 64996d691ee104fd62403af8b3d8faf7452d46e4
 } RangerState;
 
 volatile RangerState ranger;        // state is modified inside ISR
@@ -70,36 +61,14 @@ void RangerInit(void)
     GPIOPinTypeTimer(GPIO_PORTD_BASE, GPIO_PIN_1);
     GPIOPinConfigure(GPIO_PD1_WT2CCP1);
 
-<<<<<<< HEAD
     // Set up the timer in 32 bit Input Edge Time mode (split pair, timer B only)
     TimerConfigure(WTIMER2_BASE, TIMER_CFG_SPLIT_PAIR | TIMER_CFG_B_CAP_TIME);
-=======
-    TimerConfigure(WTIMER2_BASE, TIMER_CFG_SPLIT_PAIR | TIMER_CFG_B_CAP_TIME);
-
-    // Count both edges as event
-    TimerControlLevel(WTIMER2_BASE, TIMER_B, true);
->>>>>>> 64996d691ee104fd62403af8b3d8faf7452d46e4
     TimerControlEvent(WTIMER2_BASE, TIMER_B, TIMER_EVENT_BOTH_EDGES);
     TimerLoadSet(WTIMER2_BASE, TIMER_B, 0xFFFFFFFF);   // free running, no wrap
 
-<<<<<<< HEAD
     // Register ISR and enable capture interrupt
-=======
-    TimerLoadSet(WTIMER2_BASE, TIMER_B, 0xFFFFFFFF);
-    TimerEnable(WTIMER2_BASE, TIMER_B);
-
-    // Register an ISR to deal with the timeout event
->>>>>>> 64996d691ee104fd62403af8b3d8faf7452d46e4
     TimerIntRegister(WTIMER2_BASE, TIMER_B, RangerISR);
     TimerIntEnable(WTIMER2_BASE, TIMER_CAPB_EVENT);
-
-    IntMasterEnable();
-}
-
-//add this function
-uint32_t RangerGetData()
-{
-    return ranger.pulse_width;
 }
 
 /* --------------------------------------------------------------------
@@ -118,32 +87,11 @@ void RangerTriggerReading(void)
     // Assuming system clock = 50 MHz (20 ns period). 5 µs = 250 cycles.
     // Load = 500, match = 250 gives a 5 µs high time.
     TimerConfigure(WTIMER2_BASE, TIMER_CFG_SPLIT_PAIR | TIMER_CFG_B_PWM);
-<<<<<<< HEAD
     TimerLoadSet(WTIMER2_BASE, TIMER_B, 500);
     TimerMatchSet(WTIMER2_BASE, TIMER_B, 250);
     TimerIntClear(WTIMER2_BASE, TIMER_CAPB_EVENT);   // clear any stale interrupt
 
     TimerEnable(WTIMER2_BASE, TIMER_B);   // start PWM – pin goes high, then low after 5 µs
-=======
-    TimerLoadSet(WTIMER2_BASE, TIMER_B, 1000);
-    TimerMatchSet(WTIMER2_BASE, TIMER_B, 500);
-    //TimerIntClear(WTIMER2_BASE, TIMER_CAPB_EVENT);
-
-    // Enable the timer, and start PWM waveform
-    TimerEnable(WTIMER2_BASE, TIMER_B);
-
-    SysCtlDelay(50 * (50000000 / 3 / 1000000)); //wait briefly
-
-    TimerDisable(WTIMER2_BASE, TIMER_B);
-
-    //back to capture mode
-    TimerConfigure(WTIMER2_BASE, TIMER_CFG_SPLIT_PAIR | TIMER_CFG_B_CAP_TIME);
-    TimerControlEvent(WTIMER2_BASE, TIMER_B, TIMER_EVENT_BOTH_EDGES);
-
-    //clear any interrupts
-    TimerIntClear(WTIMER2_BASE, TIMER_CAPB_EVENT);
-    TimerEnable(WTIMER2_BASE, TIMER_B);
->>>>>>> 64996d691ee104fd62403af8b3d8faf7452d46e4
 }
 
 /* --------------------------------------------------------------------
@@ -162,7 +110,6 @@ uint32_t RangerGetData(void)
     return ranger.pulse_width;
 }
 
-<<<<<<< HEAD
 /* --------------------------------------------------------------------
  * Register an event that will be scheduled when a measurement completes.
  * -------------------------------------------------------------------- */
@@ -180,9 +127,6 @@ void RangerEventRegister(Event *event)
 void RangerISR(void)
 {
     uint32_t current_time = TimerValueGet(WTIMER2_BASE, TIMER_B);
-=======
-    uint32_t current_time = TimerValueGet(WTIMER2_BASE, TIMER_B); //read the timer value
->>>>>>> 64996d691ee104fd62403af8b3d8faf7452d46e4
 
     switch (ranger.state)
     {

@@ -1,81 +1,56 @@
 /*
- * music_player.c – Song playback using Timer2 (1 ms tick)
- * Debug: Toggles PF0 in ISR and in Update to verify execution.
+ * music_player.c – Song playback engine using SysTick for timing.
+ * Supports rests (PITCH_REST) and uses the event system's time.
  */
 
 #include "music_player.h"
 #include "music.h"
-#include "pwm_led.h"
-#include "pwm_buzzer.h"
+#include "event.h"
 #include <stdbool.h>
 #include <stdint.h>
-#include "inc/hw_ints.h"
-#include "inc/hw_memmap.h"
-#include "inc/hw_gpio.h"
-#include "driverlib/sysctl.h"
-#include "driverlib/timer.h"
-#include "driverlib/interrupt.h"
-#include "driverlib/gpio.h"
 
-// Current playback context
-static const Song *current_song = NULL;
-static uint16_t note_index = 0;
-static uint32_t note_start_time = 0;
-static uint32_t note_duration = 0;
+// Playback context
+static const Song *current_song = NULL;   // currently loaded song
+static uint16_t note_index = 0;           // index of current note
+static uint32_t note_start_time = 0;      // SysTick when current note began
+static uint32_t note_duration = 0;        // duration of current note (ms)
 static PlayerState player_state = PLAYER_STOPPED;
 
-// Tick counter (incremented every 1 ms by Timer2)
-static volatile uint32_t g_music_ticks = 0;
-
-// Timer2 interrupt handler
-void Timer2IntHandler(void) {
-    TimerIntClear(TIMER2_BASE, TIMER_TIMA_TIMEOUT);
-    g_music_ticks++;
-
-    // Debug: Toggle PF0 (green LED on LaunchPad) to show ISR is firing
-    static int toggle = 0;
-    toggle = !toggle;
-    if (toggle)
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, GPIO_PIN_0);
-    else
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, 0);
+/*
+ * Initialize the music player. SysTick is already running from LaunchPadInit().
+ */
+void MusicPlayerInit(void)
+{
+    // Nothing to do – SysTick is configured by the event scheduler.
 }
 
-void MusicPlayerInit(void) {
-    // Enable Timer2 peripheral
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER2);
-    // Configure Timer2A as periodic timer
-    TimerConfigure(TIMER2_BASE, TIMER_CFG_PERIODIC);
-    // Load value for 1 ms (assumes 50 MHz system clock)
-    TimerLoadSet(TIMER2_BASE, TIMER_A, 50000 - 1);
-    // Enable timeout interrupt
-    TimerIntEnable(TIMER2_BASE, TIMER_TIMA_TIMEOUT);
-    IntEnable(INT_TIMER2A);
-    // Start timer
-    TimerEnable(TIMER2_BASE, TIMER_A);
-
-    // Configure PF0 as output for debug toggles (unlock commit first)
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
-    HWREG(GPIO_PORTF_BASE + GPIO_O_LOCK) = GPIO_LOCK_KEY;
-    HWREG(GPIO_PORTF_BASE + GPIO_O_CR) |= 0x01;
-    HWREG(GPIO_PORTF_BASE + GPIO_O_LOCK) = 0;
-    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_0);
-    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, 0);
-}
-
-void MusicPlayerPlaySong(const Song *song) {
+/*
+ * Load a song and start playback from the beginning.
+ */
+void MusicPlayerPlaySong(const Song *song)
+{
     if (!song || song->length == 0) return;
     current_song = song;
     note_index = 0;
     player_state = PLAYER_PLAYING;
-    note_start_time = g_music_ticks;
+    note_start_time = EventGetCurrentTime();
     note_duration = song->notes[0].duration;
+
     uint8_t pitch = song->notes[0].pitch;
-    MusicSetBuzzer(pitch, 2);
-    MusicSetLed(pitch, 2);
+    if (pitch == PITCH_REST) {
+        MusicTurnOffBuzzer();
+        MusicTurnOffLed();                // LED off during silence
+    } else {
+        MusicSetBuzzer(pitch, 2);         // volume high
+        MusicSetLed(pitch, 2);
+    }
 }
 
-void MusicPlayerPause(void) {
+/*
+ * Pause playback (keep current position).
+ */
+void MusicPlayerPause(void)
+{
     if (player_state == PLAYER_PLAYING) {
         player_state = PLAYER_PAUSED;
         MusicTurnOffBuzzer();
@@ -83,17 +58,30 @@ void MusicPlayerPause(void) {
     }
 }
 
-void MusicPlayerResume(void) {
+/*
+ * Resume playback from paused state.
+ */
+void MusicPlayerResume(void)
+{
     if (player_state == PLAYER_PAUSED && current_song) {
         player_state = PLAYER_PLAYING;
-        note_start_time = g_music_ticks;
+        note_start_time = EventGetCurrentTime();  // restart duration counting
         uint8_t pitch = current_song->notes[note_index].pitch;
-        MusicSetBuzzer(pitch, 2);
-        MusicSetLed(pitch, 2);
+        if (pitch == PITCH_REST) {
+            MusicTurnOffBuzzer();
+            MusicTurnOffLed();
+        } else {
+            MusicSetBuzzer(pitch, 2);
+            MusicSetLed(pitch, 2);
+        }
     }
 }
 
-void MusicPlayerStop(void) {
+/*
+ * Stop playback and reset position.
+ */
+void MusicPlayerStop(void)
+{
     player_state = PLAYER_STOPPED;
     current_song = NULL;
     note_index = 0;
@@ -101,37 +89,51 @@ void MusicPlayerStop(void) {
     MusicTurnOffLed();
 }
 
-PlayerState MusicPlayerGetState(void) {
+/*
+ * Return the current player state.
+ */
+PlayerState MusicPlayerGetState(void)
+{
     return player_state;
 }
 
-uint16_t MusicPlayerGetCurrentNoteIndex(void) {
+/*
+ * Return the current note index (for debugging).
+ */
+uint16_t MusicPlayerGetCurrentNoteIndex(void)
+{
     return note_index;
 }
 
-void MusicPlayerUpdate(void) {
-    // Debug: Toggle PF0 inside Update to show it's being called
-    static int update_toggle = 0;
-    update_toggle = !update_toggle;
-    if (update_toggle)
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, GPIO_PIN_0);
-    else
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, 0);
-
+/*
+ * Update the music player. Should be called periodically (e.g., every 10 ms).
+ * Advances to the next note when the current note's duration has elapsed.
+ */
+void MusicPlayerUpdate(void)
+{
     if (player_state != PLAYER_PLAYING || !current_song)
         return;
 
-    uint32_t elapsed = g_music_ticks - note_start_time;
-    if (elapsed >= note_duration) {
+    uint32_t now = EventGetCurrentTime();
+    if (now - note_start_time >= note_duration) {
+        // Move to next note
         note_index++;
         if (note_index >= current_song->length) {
+            // Song finished -> stop
             MusicPlayerStop();
             return;
         }
-        note_start_time = g_music_ticks;
+
+        // Start new note
+        note_start_time = now;
         note_duration = current_song->notes[note_index].duration;
         uint8_t pitch = current_song->notes[note_index].pitch;
-        MusicSetBuzzer(pitch, 2);
-        MusicSetLed(pitch, 2);
+        if (pitch == PITCH_REST) {
+            MusicTurnOffBuzzer();
+            MusicTurnOffLed();
+        } else {
+            MusicSetBuzzer(pitch, 2);
+            MusicSetLed(pitch, 2);
+        }
     }
 }

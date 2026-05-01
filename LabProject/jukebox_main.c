@@ -1,10 +1,8 @@
 /*
- * jukebox_main.c – Interactive Jukebox with 7-Segment Display & Volume Knob
+ * jukebox_main.c – Interactive Jukebox (polling version)
  *
- * Uses two pushbuttons (SW1, SW2) to browse song categories and tracks,
- * plays songs via speaker, shows status on RGB LED and a 4-digit
- * 7-segment display (Grove module on J6, TM1637).
- * Volume is controlled by a potentiometer on PE3 (J8 Grove connector).
+ * Buttons are polled every 20 ms, volume knob is polled every 50 ms.
+ * Player update runs at 10 ms intervals.
  */
 
 #include "launchpad.h"
@@ -14,9 +12,8 @@
 #include "pwm_led.h"
 #include "driverlib/gpio.h"
 #include "seg7.h"
-#include "volume_control.h"          // <-- NEW
+#include "volume_control.h"
 
-// UI States
 typedef enum {
     STATE_CATEGORY,
     STATE_SONG,
@@ -24,8 +21,8 @@ typedef enum {
 } UIState;
 
 static UIState ui_state = STATE_CATEGORY;
-static uint8_t current_category = 0;      // 0 = Rock, 1 = Classic, 2 = Country, 3 = Pop
-static uint8_t current_song_index = 0;    // index within the chosen category
+static uint8_t current_category = 0;
+static uint8_t current_song_index = 0;
 
 // Button tracking
 static uint32_t button_a_press_time = 0;
@@ -34,24 +31,21 @@ static bool button_a_held = false;
 static bool button_b_held = false;
 #define LONG_PRESS_MS   1000
 
-// 7-segment display structure
+// 7-segment display
 static Seg7Display seg_display = {
     .digit = {0, 0, 0, 0},
     .colon_on = true
 };
 
-// Volume control (potentiometer)
-uint8_t current_volume = 50;             // 0-100, default mid volume
-#define VOLUME_UPDATE_INTERVAL_MS   50    // read pot every 50 ms
+// Volume control
+uint8_t current_volume = 50;          // 0-100
+#define VOLUME_UPDATE_INTERVAL_MS   50
 Event volume_update_event;
 
-// Events
 Event button_check_event;
 Event player_update_event;
 
-// ---------------------------------------------------------------------------
-// Hardware helpers
-// ---------------------------------------------------------------------------
+// ---------- helpers ----------
 static inline int ReadSW1(void) {
     return !(GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_4) & GPIO_PIN_4);
 }
@@ -59,7 +53,6 @@ static inline int ReadSW2(void) {
     return !(GPIOPinRead(GPIO_PORTF_BASE, GPIO_PIN_0) & GPIO_PIN_0);
 }
 
-// Debounced button reads (returns -1 if not stable)
 static int DebounceSW1(void) {
     static int last = 0;
     static uint32_t last_change = 0;
@@ -69,8 +62,7 @@ static int DebounceSW1(void) {
         last_change = now;
         last = now_state;
     }
-    if (now - last_change >= 50)
-        return last;
+    if (now - last_change >= 50) return last;
     return -1;
 }
 static int DebounceSW2(void) {
@@ -82,16 +74,12 @@ static int DebounceSW2(void) {
         last_change = now;
         last = now_state;
     }
-    if (now - last_change >= 50)
-        return last;
+    if (now - last_change >= 50) return last;
     return -1;
 }
 
-// ---------------------------------------------------------------------------
-// 7-segment display update function
-// ---------------------------------------------------------------------------
 void UpdateSegDisplay(void) {
-    uint8_t cat_num = current_category + 1;     // user sees 1..4
+    uint8_t cat_num = current_category + 1;
     seg_display.digit[3] = (cat_num / 10) % 10;
     seg_display.digit[2] = cat_num % 10;
     seg_display.digit[1] = (current_song_index + 1) / 10;
@@ -99,9 +87,6 @@ void UpdateSegDisplay(void) {
     Seg7Update(&seg_display);
 }
 
-// ---------------------------------------------------------------------------
-// LED color helper
-// ---------------------------------------------------------------------------
 void ShowCategoryColor(uint8_t cat) {
     uint32_t color = g_categories[cat].led_color;
     uint8_t r = (color >> 16) & 0xFF;
@@ -113,49 +98,28 @@ void ShowCategoryColor(uint8_t cat) {
     PwmLedSet(5000, pw_r, pw_b, pw_g);
 }
 
-// ---------------------------------------------------------------------------
-// Volume update task (NEW)
-// ---------------------------------------------------------------------------
-void VolumeUpdateTask(Event *event) {
-    uint8_t new_volume = VolumeControlGetLevel();
-    // Simple hysteresis to avoid jitter
-    if (abs((int)new_volume - (int)current_volume) > 2) {
-        current_volume = new_volume;
-    }
-    EventSchedule(&volume_update_event, event->time + VOLUME_UPDATE_INTERVAL_MS);
-}
-
-// ---------------------------------------------------------------------------
-// Button check task
-// ---------------------------------------------------------------------------
+// ---------- event tasks ----------
 void ButtonCheckTask(Event *event) {
     uint32_t now = EventGetCurrentTime();
     int sw1 = DebounceSW1();
     int sw2 = DebounceSW2();
 
-    // --- SW1 (Button A) ---
     if (sw1 == 1) {
-        if (!button_a_held) {
-            button_a_press_time = now;
-            button_a_held = true;
-        }
+        if (!button_a_held) { button_a_press_time = now; button_a_held = true; }
     } else if (sw1 == 0) {
         if (button_a_held) {
             uint32_t duration = now - button_a_press_time;
             if (duration >= LONG_PRESS_MS) {
-                // Long press: Play/Pause when playing
                 if (ui_state == STATE_PLAYING) {
                     PlayerState ps = MusicPlayerGetState();
-                    if (ps == PLAYER_PLAYING)
-                        MusicPlayerPause();
-                    else if (ps == PLAYER_PAUSED)
-                        MusicPlayerResume();
+                    if (ps == PLAYER_PLAYING) MusicPlayerPause();
+                    else if (ps == PLAYER_PAUSED) MusicPlayerResume();
                 }
             } else {
-                // Short press: next category or next song
                 if (ui_state == STATE_CATEGORY) {
                     current_category = (current_category + 1) % NUM_CATEGORIES;
                     ShowCategoryColor(current_category);
+                    current_song_index = 0;
                     UpdateSegDisplay();
                 } else if (ui_state == STATE_SONG) {
                     const CategoryInfo *cat = &g_categories[current_category];
@@ -169,23 +133,17 @@ void ButtonCheckTask(Event *event) {
         }
     }
 
-    // --- SW2 (Button B) ---
     if (sw2 == 1) {
-        if (!button_b_held) {
-            button_b_press_time = now;
-            button_b_held = true;
-        }
+        if (!button_b_held) { button_b_press_time = now; button_b_held = true; }
     } else if (sw2 == 0) {
         if (button_b_held) {
             uint32_t duration = now - button_b_press_time;
             if (duration >= LONG_PRESS_MS) {
-                // Long press: Stop and return to category selection
                 MusicPlayerStop();
                 ui_state = STATE_CATEGORY;
                 ShowCategoryColor(current_category);
                 UpdateSegDisplay();
             } else {
-                // Short press: enter song selection or play selected song
                 if (ui_state == STATE_CATEGORY) {
                     const CategoryInfo *cat = &g_categories[current_category];
                     if (cat->count > 0) {
@@ -199,7 +157,7 @@ void ButtonCheckTask(Event *event) {
                     const Song *song = cat->songs[current_song_index];
                     MusicPlayerPlaySong(song);
                     ui_state = STATE_PLAYING;
-                    UpdateSegDisplay();   // keep showing track during playback
+                    UpdateSegDisplay();
                 }
             }
             button_b_held = false;
@@ -209,28 +167,32 @@ void ButtonCheckTask(Event *event) {
     EventSchedule(&button_check_event, now + 20);
 }
 
+void VolumeUpdateTask(Event *event) {
+    uint8_t new_volume = VolumeControlGetLevel();
+    if (new_volume > current_volume + 2 || new_volume + 2 < current_volume) {
+        current_volume = new_volume;
+    }
+    EventSchedule(&volume_update_event, event->time + VOLUME_UPDATE_INTERVAL_MS);
+}
+
 void PlayerUpdateTask(Event *event) {
     MusicPlayerUpdate();
-
     if (ui_state == STATE_PLAYING && MusicPlayerGetState() == PLAYER_STOPPED) {
         ui_state = STATE_SONG;
         ShowCategoryColor(current_category);
         UpdateSegDisplay();
     }
-
     EventSchedule(&player_update_event, event->time + 10);
 }
 
-// ---------------------------------------------------------------------------
-// Main
-// ---------------------------------------------------------------------------
+// ---------- main ----------
 int main(void) {
     LaunchPadInit();
-    Seg7Init();                     // 7-segment display (PD0, PD1 on J6)
-    VolumeControlInit();            // Potentiometer (PE3 on J8)  <-- NEW
+    Seg7Init();
+    VolumeControlInit();
     IntMasterEnable();
 
-    // Configure buttons (SW1 on PF4, SW2 on PF0)
+    // Buttons
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
     HWREG(GPIO_PORTF_BASE + GPIO_O_LOCK) = GPIO_LOCK_KEY;
     HWREG(GPIO_PORTF_BASE + GPIO_O_CR) |= 0x01;
@@ -243,16 +205,14 @@ int main(void) {
     MusicInitBuzzer();
     MusicPlayerInit();
 
-    // Prepare events
     EventInit(&button_check_event, ButtonCheckTask);
     EventInit(&player_update_event, PlayerUpdateTask);
-    EventInit(&volume_update_event, VolumeUpdateTask);   // <-- NEW
+    EventInit(&volume_update_event, VolumeUpdateTask);
 
     EventSchedule(&button_check_event, 20);
     EventSchedule(&player_update_event, 10);
-    EventSchedule(&volume_update_event, VOLUME_UPDATE_INTERVAL_MS);   // <-- NEW
+    EventSchedule(&volume_update_event, VOLUME_UPDATE_INTERVAL_MS);
 
-    // Initial UI state
     ui_state = STATE_CATEGORY;
     current_category = 0;
     current_song_index = 0;

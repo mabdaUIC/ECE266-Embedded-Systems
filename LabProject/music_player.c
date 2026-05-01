@@ -1,6 +1,5 @@
 /*
- * music_player.c – Song playback engine using SysTick for timing.
- * Supports rests (PITCH_REST) and dynamic volume from a global variable.
+ * music_player.c – Song playback engine.
  */
 
 #include "music_player.h"
@@ -9,8 +8,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-// Global volume percentage (0-100), defined in jukebox_main.c
-extern uint8_t current_volume;
+extern uint8_t current_volume;   // global volume 0-100
 
 static const Song *current_song = NULL;
 static uint16_t note_index = 0;
@@ -18,10 +16,7 @@ static uint32_t note_start_time = 0;
 static uint32_t note_duration = 0;
 static PlayerState player_state = PLAYER_STOPPED;
 
-void MusicPlayerInit(void)
-{
-    // SysTick already running via EventSchedulerInit()
-}
+void MusicPlayerInit(void) { }
 
 void MusicPlayerPlaySong(const Song *song)
 {
@@ -31,13 +26,12 @@ void MusicPlayerPlaySong(const Song *song)
     player_state = PLAYER_PLAYING;
     note_start_time = EventGetCurrentTime();
     note_duration = song->notes[0].duration;
-
     uint8_t pitch = song->notes[0].pitch;
     if (pitch == PITCH_REST) {
         MusicTurnOffBuzzer();
         MusicTurnOffLed();
     } else {
-        MusicSetBuzzer(pitch, current_volume);   // use global volume
+        MusicSetBuzzer(pitch, current_volume);
         MusicSetLed(pitch, 2);
     }
 }
@@ -76,21 +70,12 @@ void MusicPlayerStop(void)
     MusicTurnOffLed();
 }
 
-PlayerState MusicPlayerGetState(void)
-{
-    return player_state;
-}
-
-uint16_t MusicPlayerGetCurrentNoteIndex(void)
-{
-    return note_index;
-}
+PlayerState MusicPlayerGetState(void) { return player_state; }
+uint16_t MusicPlayerGetCurrentNoteIndex(void) { return note_index; }
 
 void MusicPlayerUpdate(void)
 {
-    if (player_state != PLAYER_PLAYING || !current_song)
-        return;
-
+    if (player_state != PLAYER_PLAYING || !current_song) return;
     uint32_t now = EventGetCurrentTime();
     if (now - note_start_time >= note_duration) {
         note_index++;
